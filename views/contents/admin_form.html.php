@@ -5,7 +5,7 @@ $this->set([
 		'type' => 'single',
 		'title' => $item->title,
 		'empty' => $t('untitled'),
-		'object' => $t('node')
+		'object' => $t('content')
 	],
 	'meta' => [
 		'is_published' => $item->is_published ? $t('published') : $t('unpublished'),
@@ -86,7 +86,7 @@ $this->set([
 
 		<div class="bottom-actions">
 			<?php if ($item->exists()): ?>
-				<?= $this->html->link($item->is_published ? $t('unpublish') : $t('publish'), ['id' => $item->id, 'action' => $item->is_published ? 'unpublish': 'publish', 'library' => 'cms_core'], ['class' => 'button large']) ?>
+				<?= $this->html->link($item->is_published ? $t('unpublish') : $t('publish'), ['id' => $item->id, 'action' => $item->is_published ? 'unpublish': 'publish', 'library' => 'cms_content'], ['class' => 'button large']) ?>
 			<?php endif ?>
 			<?= $this->form->button($t('save'), ['type' => 'submit', 'class' => 'button large save']) ?>
 		</div>

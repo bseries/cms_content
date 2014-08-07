@@ -1,6 +1,6 @@
 <?php
 /**
- * Bureau Node
+ * Bureau Content
  *
  * Copyright (c) 2014 Atelier Disko - All rights reserved.
  *
@@ -12,14 +12,14 @@
 
 use lithium\net\http\Router;
 
-Router::connect('/admin/nodes/{:action}:{:nodeType}', [
-	'controller' => 'nodes', 'library' => 'cms_core', 'admin' => true
+Router::connect('/admin/contents/{:action}:{:contentType}', [
+	'controller' => 'contents', 'library' => 'cms_content', 'admin' => true
 ], $persist);
-Router::connect('/admin/nodes/{:action}/{:id:[0-9]+}', [
-	'controller' => 'nodes', 'library' => 'cms_core', 'admin' => true
+Router::connect('/admin/contents/{:action}/{:id:[0-9]+}', [
+	'controller' => 'contents', 'library' => 'cms_content', 'admin' => true
 ], $persist);
-Router::connect('/admin/nodes/{:action}/{:args}', [
-	'controller' => 'nodes', 'library' => 'cms_core', 'admin' => true
+Router::connect('/admin/contents/{:action}/{:args}', [
+	'controller' => 'contents', 'library' => 'cms_content', 'admin' => true
 ], $persist);
 
 ?>

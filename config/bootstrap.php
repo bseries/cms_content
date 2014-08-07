@@ -1,6 +1,6 @@
 <?php
 /**
- * Bureau Node
+ * Bureau Content
  *
  * Copyright (c) 2014 Atelier Disko - All rights reserved.
  *
@@ -14,6 +14,6 @@
 // require 'media.php';
 require 'panes.php';
 // require 'widgets.php';
-require 'nodes.php';
+require 'contents.php';
 
 ?>

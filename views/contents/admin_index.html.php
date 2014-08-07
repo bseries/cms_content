@@ -1,21 +1,21 @@
 <?php
 
-use cms_core\models\Nodes;
+use cms_content\models\Contents;
 
 $this->set([
 	'page' => [
 		'type' => 'multiple',
-		'object' => $t('nodes')
+		'object' => $t('contens')
 	]
 ]);
 
 ?>
 <article class="view-<?= $this->_config['controller'] . '-' . $this->_config['template'] ?> use-list">
 	<div class="top-actions">
-		<?php foreach (Nodes::types() as $name => $type): ?>
+		<?php foreach (Contents::types() as $name => $type): ?>
 			<?= $this->html->link(
 				$t('New {:type}', ['type' => $type['title']]),
-				['action' => 'add', 'nodeType' => $name, 'library' => 'cms_core'],
+				['action' => 'add', 'contentType' => $name, 'library' => 'cms_content'],
 				['class' => 'button add']
 			) ?>
 		<?php endforeach ?>
@@ -51,7 +51,7 @@ $this->set([
 							<?= $this->date->format($item->created, 'date') ?>
 						</time>
 					<td class="actions">
-						<?= $this->html->link($item->is_published ? $t('unpublish') : $t('publish'), ['id' => $item->id, 'action' => $item->is_published ? 'unpublish': 'publish', 'library' => 'cms_core'], ['class' => 'button']) ?>
+						<?= $this->html->link($item->is_published ? $t('unpublish') : $t('publish'), ['id' => $item->id, 'action' => $item->is_published ? 'unpublish': 'publish', 'library' => 'cms_content'], ['class' => 'button']) ?>
 						<?= $this->html->link($t('open'), ['id' => $item->id, 'action' => 'edit', 'library' => 'cms_core'], ['class' => 'button']) ?>
 				<?php endforeach ?>
 			</tbody>
