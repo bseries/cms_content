@@ -3,19 +3,17 @@
 $this->set([
 	'page' => [
 		'type' => 'single',
-		'title' => $item->title,
-		'empty' => $t('untitled'),
+		'title' => null,
+		'empty' => null,
 		'object' => $t('content')
 	],
 	'meta' => [
+		'type' => $item->type,
 		'is_published' => $item->is_published ? $t('published') : $t('unpublished'),
 	]
 ]);
 
-
-// var_dump($item);
 ?>
-
 <article class="view-<?= $this->_config['controller'] . '-' . $this->_config['template'] ?>">
 
 	<?=$this->form->create($item) ?>
