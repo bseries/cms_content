@@ -13,15 +13,27 @@
 namespace cms_content\models;
 
 use lithium\storage\Cache;
+use cms_media\models\Media;
+use OutOfBoundsException;
 
 class Contents extends \cms_core\models\Base {
 
 	protected static $_actsAs = [
-		'cms_core\extensions\data\behavior\Timestamp',
-		'cms_core\extensions\data\behavior\Serializable' => [
-			'fields' => [
-				'dynamic' => 'json'
+		'cms_media\extensions\data\behavior\Coupler' => [
+			'bindings' => [
+				'value' => [
+					'type' => 'direct',
+					'to' => 'value_media_id'
+				],
 			]
+		],
+		'cms_core\extensions\data\behavior\Timestamp'
+	];
+
+	public $belongsTo = [
+		'ValueMedia' => [
+			'to' => 'cms_media\models\Media',
+			'key' =>  'value_media_id'
 		]
 	];
 
@@ -29,10 +41,16 @@ class Contents extends \cms_core\models\Base {
 
 	protected static $_types = [];
 
-	// FIXME Implement Node Categories or groups when they become necessary.
-
 	public static function registerRegion($name, array $options = []) {
 		static::$_regions[$name] = $options;
+	}
+
+	public static function regions() {
+		return static::$_regions;
+	}
+
+	public function region($entity, $field = null) {
+		return $field ? static::$_regions[$entity->region][$field] : static::$_regions[$entity->region];
 	}
 
 	public static function registerType($name, array $options = []) {
@@ -43,55 +61,54 @@ class Contents extends \cms_core\models\Base {
 		return static::$_types;
 	}
 
-	public function type($entity) {
-		return static::$_types[$entity->type];
+	public function type($entity, $field = null) {
+		return $field ? static::$_types[$entity->type][$field] : static::$_types[$entity->type];
 	}
 
-	public function __get($property) {
-		return $this->dynamic[$property]['value'];
+	public function value($entity) {
+		if ($entity->value_media_id) {
+			return Media::find('first', ['conditions' => ['id' => $entity->value_media_id]]);
+		}
+		return $entity->value_text;
 	}
 
-	public function __set($property, $value) {
-		$this->dynamic[$property]['value'] = $value;
+	public static function get($region) {
+		if (!isset(static::$_regions[$region])) {
+			throw new OutOfBoundsException("Region `{$region}` not available.");
+		}
+		$cacheKey = static::generateItemCacheKey($region);
+
+		if ($result = Cache::read('default', $cacheKey)) {
+			return $result;
+		}
+		$result = static::find('first', [
+			'conditions' => [
+				'region' => $region,
+				'is_published' => true
+			],
+			'order' => ['id' => 'ASC']
+		]);
+		if (!$result) {
+			// throw new Exception("No content for region `{$region}` available.");
+			return $result;
+		}
+		Cache::write('default', $cacheKey, $result, Cache::PERSIST);
+		return $result;
+	}
+
+	public static function generateItemCacheKey($region) {
+		return 'cms_content:contents:item:' . $region;
 	}
 }
 
-// Must have type.
-
-/*
-Nodes::applyFilter('create', function($self, $params, $chain) {
-	$type = static::$_types[isset($data['type']) ? $data['type'] : 'page'];
-
-	foreach ($type['fields'] as $name => $field) {
-		$entity->dynamic[$name] = [
-			'value' => null,
-			'type' => $field['type'],
-			'length' => $field['length']
-		];
-	}
+// Invalidate caches.
+Contents::applyFilter('delete', function($self, $params, $chain) {
+	Cache::delete('default', Contents::generateItemCacheKey($params['entity']->region));
 	return $chain->next($self, $params, $chain);
 });
- */
-
-// Non-Native dynamic columns.
-/*
-Nodes::applyFilter('save', function($self, $params, $chain) {
-	$entity = $params['entity'];
-
-	$type = $entity->type();
-	// region implicit
-	$original = $entity->dynamic;
-
-	foreach ($type['fields'] as $name => $field) {
-		$dynamic[$name] = [
-			'value' => isset($original[$name]) ? $original[$name] : null,
-			'type' => $field['type'],
-			'length' => $field['length']
-		];
-	}
-
-	// Serialized by behavior.
+Contents::applyFilter('save', function($self, $params, $chain) {
+	Cache::delete('default', Contents::generateItemCacheKey($params['entity']->region));
 	return $chain->next($self, $params, $chain);
 });
- */
+
 ?>

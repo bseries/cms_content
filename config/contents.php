@@ -18,26 +18,46 @@ extract(Message::aliases());
 Contents::registerRegion('home_welcome', [
 	'title' => $t('Home Welcome Box'),
 ]);
+Contents::registerRegion('selbstver_image', [
+	'title' => $t('Selbstverständnis Bild'),
+]);
+Contents::registerRegion('selbstver_text', [
+	'title' => $t('Selbstverständnis Text'),
+]);
 
-Contents::registerType('page', [
-	'title' => $t('Page'),
-	'fields' => [
-		'title' => ['type' => 'string', 'title' => $t('Title'), 'length' => 250],
-		'body' => ['type' => 'richbasic', 'title' => $t('Content')],
-		'cover' => ['type' => 'media', 'title' => $t('Media')]
+Contents::registerType('text', [
+	'title' => $t('Text'),
+	'field' => [
+		'label' => $t('Text'),
+		'type' => 'text'
 	]
 ]);
-Contents::registerType('generic_text_content', [
-	'title' => $t('Generic Text Content Element'),
-	'fields' => [
-		'body' => ['type' => 'richextra', 'title' => $t('Content')],
+Contents::registerType('richtext', [
+	'title' => $t('Rich-Text Content'),
+	'field' => [
+		'label' => $t('Content'),
+		'type' => 'textarea',
+		'wrap' => ['class' => 'body use-editor editor-basic editor-link'],
 	]
 ]);
-Contents::registerType('generic_media_content', [
-	'title' => $t('Generic Media Content Element'),
-	'fields' => [
-		'media' => ['type' => 'media', 'media' => $t('Media')],
-	]
+Contents::registerType('media', [
+	'title' => $t('Media'),
+	'field' => function($context) {
+		extract(Message::aliases());
+
+		$html  = '<div class="media-attachment use-media-attachment-direct">';
+		$html .= $context->form->label('ContentsValueMedia', $t('Media'));
+		$html .= $context->form->hidden('value_media_id');
+		$html .= '<div class="selected"></div>';
+		$html .= $context->html->link($t('select'), '#', ['class' => 'button select']);
+		$html .= '</div>';
+
+		return $html;
+	},
+]);
+use cms_media\models\Media;
+Media::registerDependent('cms_content\models\Content', [
+	'value' => 'direct'
 ]);
 
 ?>

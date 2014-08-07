@@ -5,7 +5,7 @@ use cms_content\models\Contents;
 $this->set([
 	'page' => [
 		'type' => 'multiple',
-		'object' => $t('contens')
+		'object' => $t('contents')
 	]
 ]);
 
@@ -26,9 +26,9 @@ $this->set([
 			<thead>
 				<tr>
 					<td data-sort="is-published" class="flag is-published list-sort"><?= $t('publ.?') ?>
-					<td data-sort="title" class="emphasize title list-sort"><?= $t('Title') ?>
+					<td data-sort="region" class="region emphasize list-sort asc"><?= $t('Region') ?>
 					<td data-sort="type" class="type list-sort"><?= $t('Type') ?>
-					<td data-sort="region" class="region list-sort"><?= $t('Region') ?>
+					<td data-sort="value" class="value list-sort"><?= $t('Content') ?>
 					<td data-sort="created" class="date created list-sort"><?= $t('Created') ?>
 					<td class="actions">
 						<?= $this->form->field('search', [
@@ -42,17 +42,25 @@ $this->set([
 				<?php foreach ($data as $item): ?>
 				<tr>
 					<td class="flag is-published"><?= ($item->is_published ? '✓' : '×') ?>
+					<td class="emphasize region"><?= $item->region('title') ?>
+					<td class="type"><?= $item->type('title') ?>
+					<td class="value">
+						<?php
+							$value = $item->value();
 
-					<td class="emphasize title"><?= $item->title ?>
-					<td class="type"><?= $item->type ?>
-					<td class="region"><?= $item->region ?>
+							if (is_object($value)) {
+								echo $this->media->image($value->version('fix3admin')->url('http'), ['class' => 'media']);
+							} else {
+								echo $value;
+							}
+						?>
 					<td class="date created">
 						<time datetime="<?= $this->date->format($item->created, 'w3c') ?>">
 							<?= $this->date->format($item->created, 'date') ?>
 						</time>
 					<td class="actions">
 						<?= $this->html->link($item->is_published ? $t('unpublish') : $t('publish'), ['id' => $item->id, 'action' => $item->is_published ? 'unpublish': 'publish', 'library' => 'cms_content'], ['class' => 'button']) ?>
-						<?= $this->html->link($t('open'), ['id' => $item->id, 'action' => 'edit', 'library' => 'cms_core'], ['class' => 'button']) ?>
+						<?= $this->html->link($t('open'), ['id' => $item->id, 'action' => 'edit', 'library' => 'cms_content'], ['class' => 'button']) ?>
 				<?php endforeach ?>
 			</tbody>
 		</table>
