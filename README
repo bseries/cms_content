@@ -1,5 +1,5 @@
 BUREAU Content
--- Generic Cotnent module for bureau.
+-- Generic Content module for bureau.
 
 Synopsis
 --------
@@ -11,7 +11,7 @@ David M. Persson for Atelier Disko (david@atelierdisko.de).
 
 Copyright & License
 -------------------
-Bureau Banner is Copyright (c) 2014 Atelier Disko - All rights reserved.
+Bureau Content is Copyright (c) 2014 Atelier Disko - All rights reserved.
 
 -- This software is proprietary and confidential. Redistributions   --
 -- not permitted. Unless required by applicable law or agreed to    --
