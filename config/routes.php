@@ -12,6 +12,8 @@
 
 use lithium\net\http\Router;
 
+$persist = ['persist' => ['admin', 'controller']];
+
 Router::connect('/admin/contents/{:action}:{:contentType}', [
 	'controller' => 'contents', 'library' => 'cms_content', 'admin' => true
 ], $persist);

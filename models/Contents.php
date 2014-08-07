@@ -14,7 +14,7 @@ namespace cms_content\models;
 
 use lithium\storage\Cache;
 
-class Contetns extends \cms_core\models\Base {
+class Contents extends \cms_core\models\Base {
 
 	protected static $_actsAs = [
 		'cms_core\extensions\data\behavior\Timestamp',

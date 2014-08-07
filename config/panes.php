@@ -15,9 +15,9 @@ use lithium\g11n\Message;
 
 extract(Message::aliases());
 
-Panes::register('authoring.nodes', [
-	'title' => $t('Nodes'),
-	'url' => ['controller' => 'nodes', 'action' => 'index', 'library' => 'cms_core', 'admin' => true]
+Panes::register('authoring.contents', [
+	'title' => $t('Contents'),
+	'url' => ['controller' => 'contents', 'action' => 'index', 'library' => 'cms_content', 'admin' => true]
 ]);
 
 ?>
