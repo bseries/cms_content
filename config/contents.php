@@ -15,16 +15,6 @@ use lithium\g11n\Message;
 
 extract(Message::aliases());
 
-Contents::registerRegion('home_welcome', [
-	'title' => $t('Home Welcome Box'),
-]);
-Contents::registerRegion('selbstver_image', [
-	'title' => $t('Selbstverständnis Bild'),
-]);
-Contents::registerRegion('selbstver_text', [
-	'title' => $t('Selbstverständnis Text'),
-]);
-
 Contents::registerType('text', [
 	'title' => $t('Text'),
 	'field' => [
