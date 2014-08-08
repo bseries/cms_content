@@ -107,6 +107,10 @@ Contents::applyFilter('delete', function($self, $params, $chain) {
 	return $chain->next($self, $params, $chain);
 });
 Contents::applyFilter('save', function($self, $params, $chain) {
+	if (isset($params['data']['value_media_id']) && empty($params['data']['value_media_id'])) {
+		$params['data']['value_media_id'] = null;
+	}
+
 	Cache::delete('default', Contents::generateItemCacheKey($params['entity']->region));
 	return $chain->next($self, $params, $chain);
 });
