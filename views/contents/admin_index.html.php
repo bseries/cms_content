@@ -1,6 +1,7 @@
 <?php
 
 use cms_content\models\Contents;
+use textual\Modulation as Textual;
 
 $this->set([
 	'page' => [
@@ -27,7 +28,7 @@ $this->set([
 				<tr>
 					<td data-sort="is-published" class="flag is-published list-sort"><?= $t('publ.?') ?>
 					<td data-sort="region" class="region emphasize list-sort asc"><?= $t('Region') ?>
-					<td data-sort="value" class="value list-sort"><?= $t('Content') ?>
+					<td data-sort="value" class="value excerpt list-sort"><?= $t('Content') ?>
 					<td data-sort="created" class="date created list-sort"><?= $t('Created') ?>
 					<td class="actions">
 						<?= $this->form->field('search', [
@@ -49,7 +50,7 @@ $this->set([
 							if (is_object($value)) {
 								echo $this->media->image($value->version('fix3admin')->url('http'), ['class' => 'media']);
 							} else {
-								echo $value;
+								echo Textual::limit(strip_tags($value));
 							}
 						?>
 					<td class="date created">

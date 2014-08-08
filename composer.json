@@ -14,7 +14,8 @@
         "atelierdisko/cms_media": "1.*",
         "uor/li3_flash_message": "dev-master",
         "unionofrad/lithium": "dev-dev",
-        "composer/installers": "~1.0"
+        "composer/installers": "~1.0",
+        "davidpersson/textual": "1.0.*"
     },
     "repositories": [
       {
