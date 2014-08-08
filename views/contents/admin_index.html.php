@@ -27,7 +27,6 @@ $this->set([
 				<tr>
 					<td data-sort="is-published" class="flag is-published list-sort"><?= $t('publ.?') ?>
 					<td data-sort="region" class="region emphasize list-sort asc"><?= $t('Region') ?>
-					<td data-sort="type" class="type list-sort"><?= $t('Type') ?>
 					<td data-sort="value" class="value list-sort"><?= $t('Content') ?>
 					<td data-sort="created" class="date created list-sort"><?= $t('Created') ?>
 					<td class="actions">
@@ -43,7 +42,6 @@ $this->set([
 				<tr>
 					<td class="flag is-published"><?= ($item->is_published ? '✓' : '×') ?>
 					<td class="emphasize region"><?= $item->region('title') ?>
-					<td class="type"><?= $item->type('title') ?>
 					<td class="value">
 						<?php
 							$value = $item->value();
@@ -59,6 +57,7 @@ $this->set([
 							<?= $this->date->format($item->created, 'date') ?>
 						</time>
 					<td class="actions">
+						<?= $this->html->link($t('delete'), ['id' => $item->id, 'action' => 'delete', 'library' => 'cms_content'], ['class' => 'delete button']) ?>
 						<?= $this->html->link($item->is_published ? $t('unpublish') : $t('publish'), ['id' => $item->id, 'action' => $item->is_published ? 'unpublish': 'publish', 'library' => 'cms_content'], ['class' => 'button']) ?>
 						<?= $this->html->link($t('open'), ['id' => $item->id, 'action' => 'edit', 'library' => 'cms_content'], ['class' => 'button']) ?>
 				<?php endforeach ?>
