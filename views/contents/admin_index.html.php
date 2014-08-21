@@ -12,16 +12,6 @@ $this->set([
 
 ?>
 <article class="view-<?= $this->_config['controller'] . '-' . $this->_config['template'] ?> use-list">
-	<div class="top-actions">
-		<?php foreach (Contents::types() as $name => $type): ?>
-			<?= $this->html->link(
-				$t('New {:type}', ['type' => $type['title']]),
-				['action' => 'add', 'contentType' => $name, 'library' => 'cms_content'],
-				['class' => 'button add']
-			) ?>
-		<?php endforeach ?>
-	</div>
-
 	<?php if ($data->count()): ?>
 		<table>
 			<thead>
