@@ -10,8 +10,8 @@
     },
     "require": {
         "php": ">=5.5.0",
-        "atelierdisko/cms_core": ">=1.1.0",
-        "atelierdisko/cms_media": "1.*",
+        "atelierdisko/cms_core": "1.1.*",
+        "atelierdisko/cms_media": "1.1.*",
         "uor/li3_flash_message": "dev-master",
         "unionofrad/lithium": "dev-dev",
         "composer/installers": "~1.0",
