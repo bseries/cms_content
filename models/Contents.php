@@ -1,6 +1,6 @@
 <?php
 /**
- * Bureau Content
+ * CMS Content
  *
  * Copyright (c) 2013-2014 Atelier Disko - All rights reserved.
  *
@@ -13,13 +13,13 @@
 namespace cms_content\models;
 
 use lithium\storage\Cache;
-use cms_media\models\Media;
+use base_media\models\Media;
 use OutOfBoundsException;
 
-class Contents extends \cms_core\models\Base {
+class Contents extends \base_core\models\Base {
 
 	protected static $_actsAs = [
-		'cms_media\extensions\data\behavior\Coupler' => [
+		'base_media\extensions\data\behavior\Coupler' => [
 			'bindings' => [
 				'value' => [
 					'type' => 'direct',
@@ -27,12 +27,12 @@ class Contents extends \cms_core\models\Base {
 				],
 			]
 		],
-		'cms_core\extensions\data\behavior\Timestamp'
+		'base_core\extensions\data\behavior\Timestamp'
 	];
 
 	public $belongsTo = [
 		'ValueMedia' => [
-			'to' => 'cms_media\models\Media',
+			'to' => 'base_media\models\Media',
 			'key' =>  'value_media_id'
 		]
 	];

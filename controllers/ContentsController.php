@@ -1,6 +1,6 @@
 <?php
 /**
- * Bureau Content
+ * CMS Content
  *
  * Copyright (c) 2013-2014 Atelier Disko - All rights reserved.
  *
@@ -16,12 +16,12 @@ use lithium\g11n\Message;
 use li3_flash_message\extensions\storage\FlashMessage;
 use cms_content\models\Contents;
 
-class ContentsController extends \cms_core\controllers\BaseController {
+class ContentsController extends \base_core\controllers\BaseController {
 
-	use \cms_core\controllers\AdminEditTrait;
-	use \cms_core\controllers\AdminDeleteTrait;
+	use \base_core\controllers\AdminEditTrait;
+	use \base_core\controllers\AdminDeleteTrait;
 
-	use \cms_core\controllers\AdminPublishTrait;
+	use \base_core\controllers\AdminPublishTrait;
 
 	public function admin_index() {
 		$model = $this->_model;

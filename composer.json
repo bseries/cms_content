@@ -1,6 +1,6 @@
 {
     "name": "atelierdisko/cms_content",
-    "description": "Node module for bureau.",
+    "description": "Generic Content functionality for Bureau.",
     "homepage": "http://atelierdisko.de",
     "type": "lithium-library",
     "license": "proprietary",
@@ -10,21 +10,17 @@
     },
     "require": {
         "php": ">=5.5.0",
+        "atelierdisko/base_core": "1.2.*",
+        "atelierdisko/base_media": "1.2.*",
         "atelierdisko/cms_core": "1.2.*",
-        "atelierdisko/cms_media": "1.2.*",
         "uor/li3_flash_message": "dev-master",
         "unionofrad/lithium": "dev-dev",
         "composer/installers": "~1.0",
         "davidpersson/textual": "1.0.*"
     },
     "repositories": [
-      {
-        "type": "vcs",
-        "url": "git@bitbucket.org:atelierdisko/cms_core.git"
-      },
-      {
-        "type": "vcs",
-        "url": "git@bitbucket.org:atelierdisko/cms_media.git"
-      }
+      { "type": "vcs", "url": "git@bitbucket.org:atelierdisko/base_core.git" },
+      { "type": "vcs", "url": "git@bitbucket.org:atelierdisko/base_media.git" },
+      { "type": "vcs", "url": "git@bitbucket.org:atelierdisko/cms_core.git" }
     ]
 }

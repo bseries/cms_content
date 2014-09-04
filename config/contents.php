@@ -1,6 +1,6 @@
 <?php
 /**
- * Bureau Content
+ * CMS Content
  *
  * Copyright (c) 2014 Atelier Disko - All rights reserved.
  *
@@ -12,7 +12,7 @@
 
 use cms_content\models\Contents;
 use lithium\g11n\Message;
-use cms_media\models\Media;
+use base_media\models\Media;
 
 extract(Message::aliases());
 
