@@ -20,7 +20,7 @@ $this->set([
 		<?= $this->form->field('type', [
 			'type' => 'hidden'
 		]) ?>
-		<div class="grid-row grid-row-last">
+		<div class="grid-row">
 			<div class="grid-column-left">
 				<?php
 					$type = $item->type();
