@@ -18,7 +18,7 @@ $this->set([
 				<tr>
 					<td data-sort="is-published" class="flag is-published list-sort"><?= $t('publ.?') ?>
 					<td data-sort="region" class="region emphasize list-sort asc"><?= $t('Region') ?>
-					<td data-sort="value" class="value excerpt list-sort"><?= $t('Content') ?>
+					<td data-sort="value" class="value media excerpt list-sort"><?= $t('Content') ?>
 					<td data-sort="created" class="date created list-sort"><?= $t('Created') ?>
 					<td class="actions">
 						<?= $this->form->field('search', [
@@ -33,12 +33,14 @@ $this->set([
 				<tr>
 					<td class="flag is-published"><?= ($item->is_published ? '✓' : '×') ?>
 					<td class="emphasize region"><?= $item->region('title') ?>
-					<td class="value">
+					<td class="value media">
 						<?php
 							$value = $item->value();
 
 							if (is_object($value)) {
-								echo $this->media->image($value->version('fix3admin')->url('http'), ['class' => 'media']);
+								echo $this->media->image($value->version('fix3admin')->url('http'), [
+									'data-media-id' => $value->id
+								]);
 							} else {
 								echo Textual::limit(strip_tags($value));
 							}

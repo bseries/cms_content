@@ -38,13 +38,11 @@ class ContentsController extends \base_core\controllers\BaseController {
 		$model = $this->_model;
 		$model::pdo()->beginTransaction();
 
-		$redirectUrl = $this->_redirectUrl + [
-			'action' => 'index', 'library' => $this->_library
-		];
-
 		$item = $model::create([
 			'type' => $this->request->contentType
 		]);
+
+		$redirectUrl = ['action' => 'index', 'library' => $this->_library];
 
 		if ($this->request->data) {
 			if ($item->save($this->request->data)) {
