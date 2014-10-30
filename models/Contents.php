@@ -54,7 +54,7 @@ class Contents extends \base_core\models\Base {
 	}
 
 	public static function registerType($name, array $options = []) {
-		static::$_types[$name] = $options;
+		static::$_types[$name] = $options + compact('name');
 	}
 
 	public static function types() {
