@@ -31,8 +31,8 @@ Contents::registerType('richtext', [
 		'wrap' => ['class' => 'body use-editor editor-basic editor-link'],
 	]
 ]);
-Contents::registerType('richtext-full', [
-	'title' => $t('Full Rich-Text Content'),
+Contents::registerType('page', [
+	'title' => $t('Page Content'),
 	'field' => [
 		'label' => $t('Content'),
 		'type' => 'textarea',

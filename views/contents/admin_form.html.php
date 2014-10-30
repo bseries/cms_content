@@ -30,7 +30,7 @@ if (is_callable($type['field'])) {
 		]) ?>
 		<div class="grid-row">
 			<div class="grid-column-left">
-				<?php if ($type['name'] !== 'richtext-full'): ?>
+				<?php if ($type['name'] !== 'page'): ?>
 					<?php echo $typeHtml ?>
 				<?php endif ?>
 			</div>
@@ -44,7 +44,7 @@ if (is_callable($type['field'])) {
 		</div>
 
 		<div class="grid-row">
-			<?php if ($type['name'] === 'richtext-full'): ?>
+			<?php if ($type['name'] === 'page'): ?>
 				<?php echo $typeHtml ?>
 			<?php endif ?>
 		</div>
