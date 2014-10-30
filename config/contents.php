@@ -31,6 +31,14 @@ Contents::registerType('richtext', [
 		'wrap' => ['class' => 'body use-editor editor-basic editor-link'],
 	]
 ]);
+Contents::registerType('richtext-full', [
+	'title' => $t('Full Rich-Text Content'),
+	'field' => [
+		'label' => $t('Content'),
+		'type' => 'textarea',
+		'wrap' => ['class' => 'body use-editor editor-basic editor-link editor-size editor-media editor-list editor-headline'],
+	]
+]);
 Contents::registerType('media', [
 	'title' => $t('Media'),
 	'field' => function($context) {
