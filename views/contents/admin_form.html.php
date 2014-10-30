@@ -13,6 +13,14 @@ $this->set([
 	]
 ]);
 
+$type = $item->type();
+
+if (is_callable($type['field'])) {
+	$typeHtml = $type['field']($this);
+} else {
+	$typeHtml = $this->form->field('value_text', $type['field']);
+}
+
 ?>
 <article class="view-<?= $this->_config['controller'] . '-' . $this->_config['template'] ?>">
 
@@ -22,15 +30,9 @@ $this->set([
 		]) ?>
 		<div class="grid-row">
 			<div class="grid-column-left">
-				<?php
-					$type = $item->type();
-
-					if (is_callable($type['field'])) {
-						echo $type['field']($this);
-					} else {
-						echo $this->form->field('value_text', $type['field']);
-					}
-				?>
+				<?php if ($type['name'] !== 'richtext-full'): ?>
+					<?php echo $typeHtml ?>
+				<?php endif ?>
 			</div>
 			<div class="grid-column-right">
 				<?= $this->form->field('region', [
@@ -41,6 +43,11 @@ $this->set([
 			</div>
 		</div>
 
+		<div class="grid-row">
+			<?php if ($type['name'] === 'richtext-full'): ?>
+				<?php echo $typeHtml ?>
+			<?php endif ?>
+		</div>
 		<div class="bottom-actions">
 			<?php if ($item->exists()): ?>
 				<?= $this->html->link($item->is_published ? $t('unpublish') : $t('publish'), ['id' => $item->id, 'action' => $item->is_published ? 'unpublish': 'publish', 'library' => 'cms_content'], ['class' => 'button large']) ?>
