@@ -18,7 +18,7 @@ $type = $item->type();
 if (is_callable($type['field'])) {
 	$typeHtml = $type['field']($this);
 } else {
-	$typeHtml = $this->form->field('value_text', $type['field']);
+	$typeHtml = $this->form->field('value_text', $type['field'] + ['value' => $item->value_text]);
 }
 
 ?>
