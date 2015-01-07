@@ -10,11 +10,11 @@
     },
     "require": {
         "php": ">=5.5.0",
-        "atelierdisko/base_core": "1.2.*",
-        "atelierdisko/base_media": "1.2.*",
-        "atelierdisko/cms_core": "1.2.*",
-        "uor/li3_flash_message": "dev-master",
-        "unionofrad/lithium": "dev-dev",
+        "atelierdisko/base_core": "1.3.*",
+        "atelierdisko/base_media": "1.3.*",
+        "atelierdisko/cms_core": "1.3.*",
+        "atelierdisko/li3_flash_message": "1.0.*",
+        "unionofrad/lithium": "dev-dev as 1.0.0-dev",
         "composer/installers": "~1.0",
         "davidpersson/textual": "1.0.*"
     },
