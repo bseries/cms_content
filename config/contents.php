@@ -28,7 +28,7 @@ Contents::registerType('richtext', [
 	'field' => [
 		'label' => $t('Content'),
 		'type' => 'textarea',
-		'wrap' => ['class' => 'body use-editor editor-basic editor-link'],
+		'wrap' => ['class' => 'editor-size--beta use-editor editor-basic editor-link'],
 	]
 ]);
 Contents::registerType('page', [
@@ -36,7 +36,7 @@ Contents::registerType('page', [
 	'field' => [
 		'label' => $t('Content'),
 		'type' => 'textarea',
-		'wrap' => ['class' => 'body use-editor editor-basic editor-link editor-size editor-media editor-list editor-headline'],
+		'wrap' => ['class' => 'editor-size--beta use-editor editor-basic editor-link editor-size editor-media editor-list editor-headline'],
 	]
 ]);
 Contents::registerType('media', [

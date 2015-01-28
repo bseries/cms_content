@@ -22,7 +22,7 @@ if (is_callable($type['field'])) {
 }
 
 ?>
-<article class="view-<?= $this->_config['controller'] . '-' . $this->_config['template'] ?>">
+<article>
 
 	<?=$this->form->create($item) ?>
 		<?= $this->form->field('type', [
@@ -30,9 +30,6 @@ if (is_callable($type['field'])) {
 		]) ?>
 		<div class="grid-row">
 			<div class="grid-column-left">
-				<?php if ($type['name'] !== 'page'): ?>
-					<?php echo $typeHtml ?>
-				<?php endif ?>
 			</div>
 			<div class="grid-column-right">
 				<?= $this->form->field('region', [
@@ -44,9 +41,7 @@ if (is_callable($type['field'])) {
 		</div>
 
 		<div class="grid-row">
-			<?php if ($type['name'] === 'page'): ?>
-				<?php echo $typeHtml ?>
-			<?php endif ?>
+			<?php echo $typeHtml ?>
 		</div>
 		<div class="bottom-actions">
 			<?php if ($item->exists()): ?>

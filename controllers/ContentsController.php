@@ -18,19 +18,9 @@ use cms_content\models\Contents;
 
 class ContentsController extends \base_core\controllers\BaseController {
 
+	use \base_core\controllers\AdminIndexTrait;
 	use \base_core\controllers\AdminEditTrait;
-	use \base_core\controllers\AdminDeleteTrait;
-
 	use \base_core\controllers\AdminPublishTrait;
-
-	public function admin_index() {
-		$model = $this->_model;
-
-		$data = $model::find('all', [
-			'order' => ['region' => 'ASC', 'created' => 'DESC']
-		]);
-		return compact('data');
-	}
 
 	public function admin_add() {
 		extract(Message::aliases());

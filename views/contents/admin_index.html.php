@@ -11,22 +11,25 @@ $this->set([
 ]);
 
 ?>
-<article class="view-<?= $this->_config['controller'] . '-' . $this->_config['template'] ?> use-list">
+<article
+	class="use-index-table"
+	data-endpoint-sort="<?= $this->url([
+		'action' => 'index',
+		'page' => $paginator->getPages()->current,
+		'orderField' => '__ORDER_FIELD__',
+		'orderDirection' => '__ORDER_DIRECTION__'
+	]) ?>"
+>
+
 	<?php if ($data->count()): ?>
 		<table>
 			<thead>
 				<tr>
-					<td data-sort="is-published" class="flag is-published list-sort"><?= $t('publ.?') ?>
-					<td data-sort="region" class="region emphasize list-sort asc"><?= $t('Region') ?>
-					<td data-sort="value" class="value media excerpt list-sort"><?= $t('Content') ?>
-					<td data-sort="created" class="date created list-sort"><?= $t('Created') ?>
+					<td data-sort="is-published" class="flag is-published table-sort"><?= $t('publ.?') ?>
+					<td data-sort="region" class="region emphasize table-sort asc"><?= $t('Region') ?>
+					<td data-sort="value" class="value media excerpt table-sort"><?= $t('Content') ?>
+					<td data-sort="modified" class="date modified table-sort desc"><?= $t('Modified') ?>
 					<td class="actions">
-						<?= $this->form->field('search', [
-							'type' => 'search',
-							'label' => false,
-							'placeholder' => $t('Filter'),
-							'class' => 'list-search'
-						]) ?>
 			</thead>
 			<tbody class="list">
 				<?php foreach ($data as $item): ?>
@@ -45,12 +48,11 @@ $this->set([
 								echo Textual::limit(strip_tags($value));
 							}
 						?>
-					<td class="date created">
-						<time datetime="<?= $this->date->format($item->created, 'w3c') ?>">
-							<?= $this->date->format($item->created, 'date') ?>
+					<td class="date modified">
+						<time datetime="<?= $this->date->format($item->modified, 'w3c') ?>">
+							<?= $this->date->format($item->modified, 'date') ?>
 						</time>
 					<td class="actions">
-						<?= $this->html->link($t('delete'), ['id' => $item->id, 'action' => 'delete', 'library' => 'cms_content'], ['class' => 'delete button']) ?>
 						<?= $this->html->link($item->is_published ? $t('unpublish') : $t('publish'), ['id' => $item->id, 'action' => $item->is_published ? 'unpublish': 'publish', 'library' => 'cms_content'], ['class' => 'button']) ?>
 						<?= $this->html->link($t('open'), ['id' => $item->id, 'action' => 'edit', 'library' => 'cms_content'], ['class' => 'button']) ?>
 				<?php endforeach ?>
