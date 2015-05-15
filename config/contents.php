@@ -52,7 +52,7 @@ Contents::registerType('media', [
 		$html .= '</div>';
 
 		return $html;
-	},
+	}
 ]);
 
 Media::registerDependent('cms_content\models\Contents', [
