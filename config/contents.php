@@ -25,34 +25,25 @@ Contents::registerType('text', [
 ]);
 Contents::registerType('richtext', [
 	'title' => $t('Rich-Text Content'),
-	'field' => [
+	'editor' => [
 		'label' => $t('Content'),
-		'type' => 'textarea',
-		'wrap' => ['class' => 'editor-size--beta use-editor editor-basic editor-link'],
+		'features' => 'minimal',
+		'size' => 'beta'
 	]
 ]);
 Contents::registerType('page', [
 	'title' => $t('Page Content'),
-	'field' => [
+	'editor' => [
 		'label' => $t('Content'),
-		'type' => 'textarea',
-		'wrap' => ['class' => 'editor-size--beta use-editor editor-basic editor-link editor-size editor-media editor-list editor-headline'],
+		'features' => 'full',
+		'size' => 'beta'
 	]
 ]);
 Contents::registerType('media', [
 	'title' => $t('Media'),
-	'field' => function($context) {
-		extract(Message::aliases());
-
-		$html  = '<div class="media-attachment use-media-attachment-direct">';
-		$html .= $context->form->label('ContentsValueMedia', $t('Media'));
-		$html .= $context->form->hidden('value_media_id');
-		$html .= '<div class="selected"></div>';
-		$html .= $context->html->link($t('select'), '#', ['class' => 'button select']);
-		$html .= '</div>';
-
-		return $html;
-	}
+	'media' => [
+		'attachment' => 'direct'
+	]
 ]);
 
 Media::registerDependent('cms_content\models\Contents', [

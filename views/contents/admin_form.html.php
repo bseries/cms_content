@@ -21,10 +21,22 @@ $this->set([
 
 $type = $item->type();
 
-if (is_callable($type['field'])) {
-	$typeHtml = $type['field']($this);
-} else {
-	$typeHtml = $this->form->field('value_text', $type['field'] + ['value' => $item->value_text]);
+if ($type['field']) {
+	if (is_callable($type['field'])) {
+		$typeHtml = $type['field']($this);
+	} else {
+		$typeHtml = $this->form->field('value_text', $type['field'] + [
+			'value' => $item->value_text
+		]);
+	}
+} elseif ($type['media']) {
+	$typeHtml = $this->media->field('value_media_id', $type['media'] + [
+		'value' => $item->value_text
+	]);
+} elseif ($type['editor']) {
+	$typeHtml = $this->editor->field('value_text', $type['editor'] + [
+		'value' => $item->value_text
+	]);
 }
 
 ?>
@@ -35,8 +47,7 @@ if (is_callable($type['field'])) {
 			'type' => 'hidden'
 		]) ?>
 		<div class="grid-row">
-			<div class="grid-column-left">
-			</div>
+			<div class="grid-column-left"></div>
 			<div class="grid-column-right">
 				<?= $this->form->field('region', [
 					'type' => 'select',
