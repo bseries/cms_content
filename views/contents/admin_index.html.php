@@ -34,7 +34,7 @@ $this->set([
 				<tr>
 					<td data-sort="is-published" class="flag is-published table-sort"><?= $t('publ.?') ?>
 					<td data-sort="region" class="region emphasize table-sort asc"><?= $t('Region') ?>
-					<td data-sort="value" class="value media excerpt table-sort"><?= $t('Content') ?>
+					<td data-sort="value" class="value excerpt table-sort"><?= $t('Content') ?>
 					<td data-sort="modified" class="date modified table-sort desc"><?= $t('Modified') ?>
 					<td class="actions">
 						<?= $this->form->field('search', [
