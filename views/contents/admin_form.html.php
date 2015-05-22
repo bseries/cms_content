@@ -31,7 +31,7 @@ if ($type['field']) {
 	}
 } elseif ($type['media']) {
 	$typeHtml = $this->media->field('value_media_id', $type['media'] + [
-		'value' => $item->value_text
+		'value' => $item->value()
 	]);
 } elseif ($type['editor']) {
 	$typeHtml = $this->editor->field('value_text', $type['editor'] + [
