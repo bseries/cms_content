@@ -12,7 +12,6 @@
 
 use cms_content\models\Contents;
 use lithium\g11n\Message;
-use base_media\models\Media;
 
 extract(Message::aliases());
 
@@ -44,10 +43,6 @@ Contents::registerType('media', [
 	'media' => [
 		'attachment' => 'direct'
 	]
-]);
-
-Media::registerDependent('cms_content\models\Contents', [
-	'value' => 'direct'
 ]);
 
 ?>
