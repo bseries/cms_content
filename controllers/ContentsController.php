@@ -20,6 +20,7 @@ class ContentsController extends \base_core\controllers\BaseController {
 
 	use \base_core\controllers\AdminIndexTrait;
 	use \base_core\controllers\AdminEditTrait;
+	use \base_core\controllers\AdminDeleteTrait;
 	use \base_core\controllers\AdminPublishTrait;
 
 	public function admin_add() {
