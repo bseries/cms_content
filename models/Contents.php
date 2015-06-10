@@ -12,10 +12,14 @@
 
 namespace cms_content\models;
 
+use Exception;
+use OutOfBoundsException;
 use lithium\storage\Cache;
 use base_media\models\Media;
-use OutOfBoundsException;
 
+// Model to manage content regions and their types. Operations are
+// heavily cached in order to minimize costs of defining "dynamic"
+// regions in a site.
 class Contents extends \base_core\models\Base {
 
 	protected static $_actsAs = [
@@ -33,6 +37,12 @@ class Contents extends \base_core\models\Base {
 				'type',
 				'region'
 			]
+		],
+		'base_core\extensions\data\behavior\Localizable' => [
+			'fields' => [
+				'value_number' => 'number',
+				'value_money' => 'money'
+			]
 		]
 	];
 
@@ -47,8 +57,16 @@ class Contents extends \base_core\models\Base {
 
 	protected static $_types = [];
 
-	public static function registerRegion($name, array $options = []) {
-		static::$_regions[$name] = $options;
+	public static function registerRegion($region, array $options = []) {
+		if (!isset($options['type'])) {
+			$message = 'You must provide a type when registering a region.';
+			trigger_error($message, E_USER_DEPRECATED); // @deprecated
+			// throw new Exception($message);
+		}
+		static::$_regions[$region] = $options + [
+			'title' => $region,
+			'type' => null
+		];
 	}
 
 	public static function regions() {
@@ -60,10 +78,9 @@ class Contents extends \base_core\models\Base {
 	}
 
 	public static function registerType($name, array $options = []) {
-		static::$_types[$name] = $options + compact('name') + [
-			'field' => null,
-			'editor' => null,
-			'media' => null
+		static::$_types[$name] = $options + [
+			'input' => function($context, $item) {},
+			'format' => function($context, $item) {}
 		];
 	}
 
@@ -71,15 +88,29 @@ class Contents extends \base_core\models\Base {
 		return static::$_types;
 	}
 
-	public function type($entity, $field = null) {
-		return $field ? static::$_types[$entity->type][$field] : static::$_types[$entity->type];
+	public function type($entity) {
+		return static::$_types[$entity->type];
+	}
+
+	public function input($entity, $context) {
+		$callable = static::$_types[$entity->type]['input'];
+		return $callable($context, $entity);
+	}
+
+	public function format($entity, $context) {
+		$callable = static::$_types[$entity->type]['format'];
+		return $callable($context, $entity);
 	}
 
 	public function value($entity) {
 		if ($entity->value_media_id) {
 			return Media::find('first', ['conditions' => ['id' => $entity->value_media_id]]);
 		}
-		return $entity->value_text;
+		foreach (['value_number', 'value_money', 'value_text'] as $field) {
+			if ($entity->{$field}) {
+				return $entity->{$field};
+			}
+		}
 	}
 
 	public static function get($region) {

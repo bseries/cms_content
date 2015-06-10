@@ -10,39 +10,96 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  */
 
-use cms_content\models\Contents;
 use lithium\g11n\Message;
+use cms_content\models\Contents;
 
 extract(Message::aliases());
 
 Contents::registerType('text', [
-	'title' => $t('Text'),
-	'field' => [
-		'label' => $t('Text'),
-		'type' => 'text'
-	]
+	'input' => function($context, $item) use ($t) {
+		return $context->form->field('value_text', [
+			'label' => $t('Text', ['scope' => 'cms_content']),
+			'type' => 'text',
+			'value' => $item->value_text
+		]);
+	},
+	'format' => function($context, $item) {
+		return $item->value_text;
+	}
 ]);
+
 Contents::registerType('richtext', [
-	'title' => $t('Rich-Text Content'),
-	'editor' => [
-		'label' => $t('Content'),
-		'features' => 'minimal',
-		'size' => 'beta'
-	]
+	'input' => function($context, $item) use ($t) {
+		return $context->editor->field('value_text', [
+			'label' => $t('Content', ['scope' => 'cms_content']),
+			'value' => $item->value_text,
+			'features' => 'minimal',
+			'size' => 'beta'
+		]);
+	},
+	'format' => function($context, $item) {
+		return $context->editor->parse($item->value_text);
+	}
 ]);
-Contents::registerType('page', [
-	'title' => $t('Page Content'),
-	'editor' => [
-		'label' => $t('Content'),
-		'features' => 'full',
-		'size' => 'beta'
-	]
-]);
+
 Contents::registerType('media', [
-	'title' => $t('Media'),
-	'media' => [
-		'attachment' => 'direct'
-	]
+	'input' => function($context, $item) use ($t) {
+		return $context->media->field('value_media_id', [
+			'value' => $item->value(),
+			'attachment' => 'direct'
+		]);
+	},
+	'format' => function($context, $item) {
+		return $this->media->image($item->value()->version('fix3admin')->url('http'), [
+			'data-media-id' => $item->value()->id
+		]);
+	}
+]);
+
+Contents::registerType('number', [
+	'input' => function($context, $item) use ($t) {
+		return $context->form->field('value_number', [
+			'label' => $t('Number', ['scope' => 'cms_content']),
+			'type' => 'text',
+			'value' => $context->number->format($item->value_number ?: 0, 'decimal')
+		]);
+	},
+	'format' => function($context, $item) {
+		return $context->number->format($item->value_number ?: 0, 'decimal');
+	}
+]);
+
+Contents::registerType('money', [
+	// Simulating money format helper method as we don't want to depend
+	// on whole billing_core module for just the helper.
+	'input' => function($context, $item) use ($t) {
+		return $context->form->field('value_money', [
+			'label' => $t('Money', ['scope' => 'cms_content']),
+			'type' => 'text',
+			'value' => $context->number->format(($item->value_money / 100) ?: 0, 'decimal')
+		]);
+	},
+	'format' => function($context, $item) {
+		return $context->number->format(($item->value_money / 100) ?: 0, 'decimal');
+	}
+]);
+
+// @deprecated
+Contents::registerType('page', [
+	'input' => function($context, $item) use ($t) {
+		trigger_error('Content type "page" is deprecated.', E_USER_DEPRECATED);
+
+		return $context->editor->field('value_text', [
+			'label' => $t('Content', ['scope' => 'cms_content']),
+			'value' => $item->value_text,
+			'features' => 'full',
+			'size' => 'beta'
+		]);
+	},
+	'format' => function($context, $item) {
+		trigger_error('Content type "page" is deprecated.', E_USER_DEPRECATED);
+		return $context->editor->parse($item->value_text);
+	}
 ]);
 
 ?>

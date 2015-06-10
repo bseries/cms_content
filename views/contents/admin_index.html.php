@@ -1,6 +1,5 @@
 <?php
 
-use cms_content\models\Contents;
 use textual\Modulation as Textual;
 use lithium\g11n\Message;
 
@@ -28,6 +27,16 @@ $this->set([
 	]) ?>"
 >
 
+	<div class="top-actions">
+		<?php foreach ($regions as $region => $regionTitle): ?>
+			<?php echo $this->html->link(
+				$t('new <em>{:region}</em> content', ['region' => $regionTitle]),
+				['action' => 'add'] + compact('region'),
+				['class' => 'button add', 'escape' => false]
+			) ?>
+		<?php endforeach  ?>
+	</div>
+
 	<?php if ($data->count()): ?>
 		<table>
 			<thead>
@@ -51,17 +60,11 @@ $this->set([
 					<td class="flag is-published"><?= ($item->is_published ? '✓' : '×') ?>
 					<td class="emphasize region"><?= $item->region('title') ?>
 					<td class="value media">
-						<?php
-							$value = $item->value();
+					<?php
+							echo $item->format($this);
 
-							if (is_object($value)) {
-								echo $this->media->image($value->version('fix3admin')->url('http'), [
-									'data-media-id' => $value->id
-								]);
-							} else {
-								echo Textual::limit(strip_tags($value));
-							}
-						?>
+								// echo Textual::limit(strip_tags($value));
+					?>
 					<td class="date modified">
 						<time datetime="<?= $this->date->format($item->modified, 'w3c') ?>">
 							<?= $this->date->format($item->modified, 'date') ?>

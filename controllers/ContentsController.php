@@ -29,8 +29,9 @@ class ContentsController extends \base_core\controllers\BaseController {
 		$model::pdo()->beginTransaction();
 
 		$item = $model::create([
-			'type' => $this->request->contentType
+			'region' => $this->request->region
 		]);
+		$item->type = $item->region('type');
 
 		$redirectUrl = ['action' => 'index', 'library' => $this->_library];
 

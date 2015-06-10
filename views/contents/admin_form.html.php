@@ -19,26 +19,6 @@ $this->set([
 	]
 ]);
 
-$type = $item->type();
-
-if ($type['field']) {
-	if (is_callable($type['field'])) {
-		$typeHtml = $type['field']($this);
-	} else {
-		$typeHtml = $this->form->field('value_text', $type['field'] + [
-			'value' => $item->value_text
-		]);
-	}
-} elseif ($type['media']) {
-	$typeHtml = $this->media->field('value_media_id', $type['media'] + [
-		'value' => $item->value()
-	]);
-} elseif ($type['editor']) {
-	$typeHtml = $this->editor->field('value_text', $type['editor'] + [
-		'value' => $item->value_text
-	]);
-}
-
 ?>
 <article>
 
@@ -58,7 +38,7 @@ if ($type['field']) {
 		</div>
 
 		<div class="grid-row">
-			<?php echo $typeHtml ?>
+			<?php echo $item->input($this) ?>
 		</div>
 		<div class="bottom-actions">
 			<?php if ($item->exists()): ?>
