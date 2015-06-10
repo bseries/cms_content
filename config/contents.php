@@ -84,11 +84,8 @@ Contents::registerType('money', [
 	}
 ]);
 
-// @deprecated
 Contents::registerType('page', [
 	'input' => function($context, $item) use ($t) {
-		trigger_error('Content type "page" is deprecated.', E_USER_DEPRECATED);
-
 		return $context->editor->field('value_text', [
 			'label' => $t('Content', ['scope' => 'cms_content']),
 			'value' => $item->value_text,
@@ -97,7 +94,6 @@ Contents::registerType('page', [
 		]);
 	},
 	'format' => function($context, $item) {
-		trigger_error('Content type "page" is deprecated.', E_USER_DEPRECATED);
 		return $context->editor->parse($item->value_text);
 	}
 ]);
