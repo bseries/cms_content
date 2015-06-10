@@ -64,8 +64,9 @@ class Contents extends \base_core\models\Base {
 			// throw new Exception($message);
 		}
 		static::$_regions[$region] = $options + [
+			'name' => $region,
 			'title' => $region,
-			'type' => null
+			'type' => null, // one of the registered type
 		];
 	}
 
