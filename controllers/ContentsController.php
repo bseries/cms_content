@@ -12,6 +12,7 @@
 
 namespace cms_content\controllers;
 
+use lithium\security\Auth;
 use lithium\g11n\Message;
 use li3_flash_message\extensions\storage\FlashMessage;
 use cms_content\models\Contents;
@@ -25,12 +26,15 @@ class ContentsController extends \base_core\controllers\BaseController {
 
 	public function admin_add() {
 		extract(Message::aliases());
+		$user = Auth::check('default');
 
 		$model = $this->_model;
 		$model::pdo()->beginTransaction();
 
 		$item = $model::create([
-			'region' => $this->request->region
+			'region' => $this->request->region,
+			// Set ownership.
+			'user_id' => $user['id']
 		]);
 		$item->type = $item->region('type');
 

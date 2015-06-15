@@ -23,6 +23,7 @@ use base_media\models\Media;
 class Contents extends \base_core\models\Base {
 
 	protected static $_actsAs = [
+		'base_media\extensions\data\behavior\Ownable',
 		'base_media\extensions\data\behavior\Coupler' => [
 			'bindings' => [
 				'value' => [
