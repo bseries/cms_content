@@ -14,7 +14,7 @@ use lithium\net\http\Router;
 
 $persist = ['admin', 'controller', 'library'];
 
-Router::connect("/admin/cms-content/contents/add/region:{:region:\w+}", [
+Router::connect("/admin/cms-content/contents/add/region:{:region:[a-z\.\-\_]+}", [
 	'controller' => 'contents',
 	'action' => 'add',
 	'library' => 'cms_content',
