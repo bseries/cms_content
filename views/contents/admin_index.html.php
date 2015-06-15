@@ -33,7 +33,7 @@ $this->set([
 				$t('new <em>{:region}</em> content', ['region' => $regionTitle]),
 				['action' => 'add'] + compact('region'),
 				['class' => 'button add', 'escape' => false]
-			) ?>
+			) ?><br>
 		<?php endforeach  ?>
 	</div>
 
