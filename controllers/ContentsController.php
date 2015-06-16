@@ -34,7 +34,7 @@ class ContentsController extends \base_core\controllers\BaseController {
 		$item = $model::create([
 			'region' => $this->request->region,
 			// Set ownership.
-			'user_id' => $user['id']
+			'owner_id' => $user['id']
 		]);
 		$item->type = $item->region('type');
 

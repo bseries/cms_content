@@ -42,9 +42,12 @@ $this->set([
 			<thead>
 				<tr>
 					<td data-sort="is-published" class="flag is-published table-sort"><?= $t('publ.?') ?>
-					<td data-sort="region" class="region emphasize table-sort asc"><?= $t('Region') ?>
+					<td data-sort="region" class="region emphasize table-sort"><?= $t('Region') ?>
 					<td data-sort="value" class="value excerpt table-sort"><?= $t('Content') ?>
 					<td data-sort="modified" class="date modified table-sort desc"><?= $t('Modified') ?>
+					<?php if ($useOwner): ?>
+						<td class="user"><?= $t('Owner') ?>
+					<?php endif ?>
 					<td class="actions">
 						<?= $this->form->field('search', [
 							'type' => 'search',
@@ -69,6 +72,10 @@ $this->set([
 						<time datetime="<?= $this->date->format($item->modified, 'w3c') ?>">
 							<?= $this->date->format($item->modified, 'date') ?>
 						</time>
+					<?php if ($useOwner): ?>
+						<td class="user">
+							<?= $item->owner()->name ?>
+					<?php endif ?>
 					<td class="actions">
 						<?= $this->html->link($t('delete'), ['id' => $item->id, 'action' => 'delete'], ['class' => 'button delete']) ?>
 						<?= $this->html->link($item->is_published ? $t('unpublish') : $t('publish'), ['id' => $item->id, 'action' => $item->is_published ? 'unpublish': 'publish', 'library' => 'cms_content'], ['class' => 'button']) ?>
