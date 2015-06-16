@@ -1,2 +1,2 @@
-ALTER TABLE `contents` ADD `user_id` INT(11)  UNSIGNED  NOT NULL  AFTER `id`;
-UPDATE TABLE `contents` SET `user_id` = 1 WHERE `user_id` = 0;
+ALTER TABLE `contents` ADD `owner_id` INT(11)  UNSIGNED  NOT NULL  AFTER `id`;
+UPDATE TABLE `contents` SET `owner_id` = 1 WHERE `owner_id` = 0;
