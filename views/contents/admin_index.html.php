@@ -60,7 +60,7 @@ $this->set([
 			<tbody>
 				<?php foreach ($data as $item): ?>
 				<tr>
-					<td class="flag is-published"><?= ($item->is_published ? '✓' : '×') ?>
+					<td class="flag"><i class="material-icons"><?= ($item->is_published ? 'done' : '') ?></i>
 					<td class="emphasize region"><?= $item->region('title') ?>
 					<td class="value media">
 					<?php
