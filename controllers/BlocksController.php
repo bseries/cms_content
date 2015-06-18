@@ -15,9 +15,9 @@ namespace cms_content\controllers;
 use lithium\security\Auth;
 use lithium\g11n\Message;
 use li3_flash_message\extensions\storage\FlashMessage;
-use cms_content\models\Contents;
+use cms_content\models\Regions;
 
-class ContentsController extends \base_core\controllers\BaseController {
+class BlocksController extends \base_core\controllers\BaseController {
 
 	use \base_core\controllers\AdminIndexTrait;
 	use \base_core\controllers\AdminEditTrait;
@@ -36,7 +36,7 @@ class ContentsController extends \base_core\controllers\BaseController {
 			// Set ownership.
 			'owner_id' => $user['id']
 		]);
-		$item->type = $item->region('type');
+		$item->type = $item->region()->type;
 
 		$redirectUrl = ['action' => 'index', 'library' => $this->_library];
 
@@ -57,8 +57,8 @@ class ContentsController extends \base_core\controllers\BaseController {
 	protected function _selects($item = null) {
 		$regions = [];
 
-		foreach (Contents::regions() as $name => $item) {
-			$regions[$name] = $item['title'];
+		foreach (Regions::find('all') as $name => $item) {
+			$regions[$name] = $item->title;
 		}
 		return compact('regions');
 	}

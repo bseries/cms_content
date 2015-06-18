@@ -11,7 +11,7 @@ $t = function($message, array $options = []) {
 $this->set([
 	'page' => [
 		'type' => 'multiple',
-		'object' => $t('contents')
+		'object' => $t('content blocks')
 	]
 ]);
 
@@ -61,13 +61,9 @@ $this->set([
 				<?php foreach ($data as $item): ?>
 				<tr>
 					<td class="flag"><i class="material-icons"><?= ($item->is_published ? 'done' : '') ?></i>
-					<td class="emphasize region"><?= $item->region('title') ?>
+					<td class="emphasize region"><?= $item->region()->title ?>
 					<td class="value media">
-					<?php
-							echo $item->format($this);
-
-								// echo Textual::limit(strip_tags($value));
-					?>
+						<?php echo $item->format($this) ?>
 					<td class="date modified">
 						<time datetime="<?= $this->date->format($item->modified, 'w3c') ?>">
 							<?= $this->date->format($item->modified, 'date') ?>

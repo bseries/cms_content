@@ -23,6 +23,10 @@ use cms_content\models\Regions;
 // regions in a site.
 class Blocks extends \base_core\models\Base {
 
+	protected $_meta = [
+		'source' => 'content_blocks'
+	];
+
 	protected static $_actsAs = [
 		'base_core\extensions\data\behavior\Ownable',
 		'base_media\extensions\data\behavior\Coupler' => [

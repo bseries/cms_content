@@ -11,7 +11,7 @@ $this->set([
 		'type' => 'single',
 		'title' => null,
 		'empty' => null,
-		'object' => $t('content')
+		'object' => $t('content block')
 	],
 	'meta' => [
 		'type' => $item->type,
