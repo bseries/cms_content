@@ -56,6 +56,7 @@ class ContentsController extends \base_core\controllers\BaseController {
 
 	protected function _selects($item = null) {
 		$regions = [];
+
 		foreach (Contents::regions() as $name => $item) {
 			$regions[$name] = $item['title'];
 		}

@@ -11,11 +11,11 @@
  */
 
 use lithium\g11n\Message;
-use cms_content\models\Contents;
+use cms_content\models\Types;
 
 extract(Message::aliases());
 
-Contents::registerType('text', [
+Types::register('text', [
 	'input' => function($context, $item) use ($t) {
 		return $context->form->field('value_text', [
 			'label' => $t('Text', ['scope' => 'cms_content']),
@@ -28,7 +28,7 @@ Contents::registerType('text', [
 	}
 ]);
 
-Contents::registerType('richtext', [
+Types::register('richtext', [
 	'input' => function($context, $item) use ($t) {
 		return $context->editor->field('value_text', [
 			'label' => $t('Content', ['scope' => 'cms_content']),
@@ -42,7 +42,7 @@ Contents::registerType('richtext', [
 	}
 ]);
 
-Contents::registerType('media', [
+Types::register('media', [
 	'input' => function($context, $item) use ($t) {
 		return $context->media->field('value_media_id', [
 			'value' => $item->value(),
@@ -56,7 +56,7 @@ Contents::registerType('media', [
 	}
 ]);
 
-Contents::registerType('number', [
+Types::register('number', [
 	'input' => function($context, $item) use ($t) {
 		return $context->form->field('value_number', [
 			'label' => $t('Number', ['scope' => 'cms_content']),
@@ -69,7 +69,7 @@ Contents::registerType('number', [
 	}
 ]);
 
-Contents::registerType('money', [
+Types::register('money', [
 	// Simulating money format helper method as we don't want to depend
 	// on whole billing_core module for just the helper.
 	'input' => function($context, $item) use ($t) {
@@ -84,7 +84,7 @@ Contents::registerType('money', [
 	}
 ]);
 
-Contents::registerType('page', [
+Types::register('page', [
 	'input' => function($context, $item) use ($t) {
 		return $context->editor->field('value_text', [
 			'label' => $t('Content', ['scope' => 'cms_content']),

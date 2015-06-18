@@ -30,7 +30,7 @@ $this->set([
 	<div class="top-actions">
 		<?php foreach ($regions as $region => $regionTitle): ?>
 			<?php echo $this->html->link(
-				$t('new <em>{:region}</em> content', ['region' => $regionTitle]),
+				$regionTitle,
 				['action' => 'add'] + compact('region'),
 				['class' => 'button add', 'escape' => false]
 			) ?><br>
