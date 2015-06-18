@@ -30,6 +30,14 @@ class Regions extends \base_core\models\Base {
 		static::finder('all', function($self, $params, $chain) {
 			return static::$_data;
 		});
+		static::finder('list', function($self, $params, $chain) {
+			$results = [];
+
+			foreach (static::$_data as $name => $item) {
+				$results[$name] = $item->title;
+			}
+			return $results;
+		});
 		static::finder('first', function($self, $params, $chain) {
 			return static::$_data[$params['options']['conditions']['name']];
 		});

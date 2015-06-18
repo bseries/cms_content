@@ -55,11 +55,7 @@ class BlocksController extends \base_core\controllers\BaseController {
 	}
 
 	protected function _selects($item = null) {
-		$regions = [];
-
-		foreach (Regions::find('all') as $name => $item) {
-			$regions[$name] = $item->title;
-		}
+		$regions = Regions::find('list');
 		return compact('regions');
 	}
 }
