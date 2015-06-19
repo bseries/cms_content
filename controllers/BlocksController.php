@@ -18,6 +18,7 @@ use lithium\g11n\Message;
 use li3_flash_message\extensions\storage\FlashMessage;
 use cms_content\models\Regions;
 use li3_access\security\AccessDeniedException;
+use base_core\models\Users;
 
 class BlocksController extends \base_core\controllers\BaseController {
 
@@ -59,10 +60,11 @@ class BlocksController extends \base_core\controllers\BaseController {
 				]);
 			}
 		}
+		$users = Users::find('list', ['order' => 'name']);
 		$useOwner = Gate::check('users');
 
 		$this->_render['template'] = 'admin_form';
-		return compact('item', 'useOwner') + $this->_selects($item);
+		return compact('item', 'users', 'useOwner') + $this->_selects($item);
 	}
 
 	protected function _selects($item = null) {
@@ -76,7 +78,7 @@ class BlocksController extends \base_core\controllers\BaseController {
 				return $item->title;
 			})->to('array');
 
-		return compact('regions');
+		return compact('regions', 'users');
 	}
 }
 
