@@ -50,7 +50,7 @@ Types::register('media', [
 		]);
 	},
 	'format' => function($context, $item) {
-		return $this->media->image($item->value()->version('fix3admin')->url('http'), [
+		return $context->media->image($item->value()->version('fix3admin')->url('http'), [
 			'data-media-id' => $item->value()->id
 		]);
 	}

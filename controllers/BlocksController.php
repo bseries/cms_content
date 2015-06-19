@@ -13,9 +13,11 @@
 namespace cms_content\controllers;
 
 use lithium\security\Auth;
+use base_core\security\Gate;
 use lithium\g11n\Message;
 use li3_flash_message\extensions\storage\FlashMessage;
 use cms_content\models\Regions;
+use li3_access\security\AccessDeniedException;
 
 class BlocksController extends \base_core\controllers\BaseController {
 
@@ -38,20 +40,29 @@ class BlocksController extends \base_core\controllers\BaseController {
 		]);
 		$item->type = $item->region()->type;
 
-		$redirectUrl = ['action' => 'index', 'library' => $this->_library];
+		if (!$item->region()->hasAccess($user)) {
+			throw new AccessDeniedException();
+		}
 
 		if ($this->request->data) {
 			if ($item->save($this->request->data)) {
 				$model::pdo()->commit();
-				FlashMessage::write($t('Successfully saved.'), ['level' => 'success']);
-				return $this->redirect($redirectUrl);
+
+				FlashMessage::write($t('Successfully saved.', ['scope' => 'cms_content']), [
+					'level' => 'success'
+				]);
+				return $this->redirect(['action' => 'index']);
 			} else {
 				$model::pdo()->rollback();
-				FlashMessage::write($t('Failed to save.'), ['level' => 'error']);
+				FlashMessage::write($t('Failed to save.', ['scope' => 'cms_content']), [
+					'level' => 'error'
+				]);
 			}
 		}
+		$useOwner = Gate::check('users');
+
 		$this->_render['template'] = 'admin_form';
-		return compact('item') + $this->_selects($item);
+		return compact('item', 'useOwner') + $this->_selects($item);
 	}
 
 	protected function _selects($item = null) {
@@ -63,7 +74,7 @@ class BlocksController extends \base_core\controllers\BaseController {
 			})
 			->map(function($item) {
 				return $item->title;
-			});
+			})->to('array');
 
 		return compact('regions');
 	}
