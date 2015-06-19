@@ -13,6 +13,7 @@
 namespace cms_content\models;
 
 use Exception;
+use lithium\util\Collection;
 
 class Types extends \base_core\models\Base {
 
@@ -24,7 +25,15 @@ class Types extends \base_core\models\Base {
 
 	public static function init() {
 		static::finder('all', function($self, $params, $chain) {
-			return static::$_data;
+			return new Collection(['data' => static::$_data]);
+		});
+		static::finder('list', function($self, $params, $chain) {
+			$results = [];
+
+			foreach (static::$_data as $name => $item) {
+				$results[$name] = $item->title;
+			}
+			return new Collection(['data' => $results]);
 		});
 		static::finder('first', function($self, $params, $chain) {
 			return static::$_data[$params['options']['conditions']['name']];

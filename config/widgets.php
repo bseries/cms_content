@@ -12,14 +12,14 @@
 
 use lithium\g11n\Message;
 use base_core\extensions\cms\Widgets;
-use cms_content\models\Contents;
+use cms_content\models\Blocks;
 
 extract(Message::aliases());
 
 Widgets::register('authoring', function() use ($t) {
 	return [
 		'data' => [
-			$t('Content blocks', ['scope' => 'cms_content']) => Contents::find('count')
+			$t('Content blocks', ['scope' => 'cms_content']) => Blocks::find('count')
 		]
 	];
 }, [

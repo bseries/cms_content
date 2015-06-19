@@ -55,7 +55,16 @@ class BlocksController extends \base_core\controllers\BaseController {
 	}
 
 	protected function _selects($item = null) {
-		$regions = Regions::find('list');
+		$user = Auth::check('default');
+
+		$regions = Regions::find('all')
+			->find(function($item) use ($user) {
+				return $item->hasAccess($user);
+			})
+			->map(function($item) {
+				return $item->title;
+			});
+
 		return compact('regions');
 	}
 }
