@@ -46,7 +46,8 @@ $this->set([
 				<?= $this->form->field('region', [
 					'type' => 'select',
 					'label' => $t('Region'),
-					'list' => $regions
+					'list' => $regions,
+					'disabled' => true
 				]) ?>
 			</div>
 		</div>

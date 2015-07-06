@@ -33,7 +33,7 @@ class Types extends \base_core\models\Base {
 			foreach (static::$_data as $name => $item) {
 				$results[$name] = $item->title;
 			}
-			return new Collection(['data' => $results]);
+			return $results;
 		});
 		static::finder('first', function($self, $params, $chain) {
 			return static::$_data[$params['options']['conditions']['name']];

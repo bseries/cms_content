@@ -12,7 +12,7 @@
 
 namespace cms_content\models;
 
-trigger_error('cms_content\models\Contents is deprecated use Blocks instead.', E_USER_DEPRECATED);
+// trigger_error('cms_content\models\Contents is deprecated use Blocks instead.', E_USER_DEPRECATED);
 
 // @deprecated
 class Contents extends \cms_content\models\Blocks {
