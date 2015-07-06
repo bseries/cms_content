@@ -14,10 +14,10 @@ namespace cms_content\models;
 
 use Exception;
 use OutOfBoundsException;
-use lithium\storage\Cache;
 use base_media\models\Media;
-use cms_content\models\Types;
 use cms_content\models\Regions;
+use cms_content\models\Types;
+use lithium\storage\Cache;
 
 // Operations are heavily cached in order to minimize costs of defining "dynamic"
 // regions in a site.
