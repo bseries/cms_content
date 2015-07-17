@@ -12,6 +12,7 @@
 
 namespace cms_content\controllers;
 
+use base_core\extensions\cms\Settings;
 use base_core\models\Users;
 use base_core\security\Gate;
 use cms_content\models\Regions;
