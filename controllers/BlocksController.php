@@ -12,13 +12,12 @@
 
 namespace cms_content\controllers;
 
-use lithium\security\Auth;
+use base_core\models\Users;
 use base_core\security\Gate;
-use lithium\g11n\Message;
-use li3_flash_message\extensions\storage\FlashMessage;
 use cms_content\models\Regions;
 use li3_access\security\AccessDeniedException;
-use base_core\models\Users;
+use li3_flash_message\extensions\storage\FlashMessage;
+use lithium\g11n\Message;
 
 class BlocksController extends \base_core\controllers\BaseController {
 
@@ -29,20 +28,19 @@ class BlocksController extends \base_core\controllers\BaseController {
 
 	public function admin_add() {
 		extract(Message::aliases());
-		$user = Auth::check('default');
 
 		$model = $this->_model;
 		$model::pdo()->beginTransaction();
 
 		$item = $model::create([
 			'region' => $this->request->region,
-			// Set ownership.
-			'owner_id' => $user['id']
+			// Will not be saved without error when there is no such field.
+			'owner_id' => Gate::user(true, 'id')
 		]);
 		$item->type = $item->region()->type;
 
-		if (!$item->region()->hasAccess($user)) {
-			throw new AccessDeniedException();
+		if (!$item->region()->hasAccess(Gate::user())) {
+			throw new AccessDeniedException('No access to region.');
 		}
 
 		if ($this->request->data) {
@@ -60,8 +58,15 @@ class BlocksController extends \base_core\controllers\BaseController {
 				]);
 			}
 		}
-		$users = Users::find('list', ['order' => 'name']);
-		$useOwner = Gate::check('users');
+
+		$useOwner = Settings::read('security.checkOwner');
+		$useOwner = $useOwner && Gate::checkRight('owner');
+		if ($useOwner) {
+			$users = Users::find('list', [
+				'order' => 'name',
+				'conditions' => ['is_active' => true]
+			]);
+		}
 
 		$this->_render['template'] = 'admin_form';
 		return compact('item', 'users', 'useOwner') + $this->_selects($item);
