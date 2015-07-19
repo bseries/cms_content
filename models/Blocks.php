@@ -27,7 +27,7 @@ class Blocks extends \base_core\models\Base {
 		'source' => 'content_blocks'
 	];
 
-	public $actsAs = [
+	protected $_actsAs = [
 		'base_core\extensions\data\behavior\Ownable',
 		'base_media\extensions\data\behavior\Coupler' => [
 			'bindings' => [
