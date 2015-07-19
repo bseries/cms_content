@@ -21,7 +21,7 @@ class Regions extends \base_core\models\Base {
 		'connection' => false
 	];
 
-	protected static $_actsAs = [
+	public $actsAs = [
 		'base_core\extensions\data\behavior\Access'
 	];
 
