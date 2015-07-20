@@ -27,6 +27,17 @@ class Blocks extends \base_core\models\Base {
 		'source' => 'content_blocks'
 	];
 
+	public $belongsTo = [
+		'Owner' => [
+			'to' => 'base_core\models\Users',
+			'key' => 'owner_id'
+		],
+		'ValueMedia' => [
+			'to' => 'base_media\models\Media',
+			'key' =>  'value_media_id'
+		]
+	];
+
 	protected $_actsAs = [
 		'base_core\extensions\data\behavior\Ownable',
 		'base_media\extensions\data\behavior\Coupler' => [
@@ -40,6 +51,7 @@ class Blocks extends \base_core\models\Base {
 		'base_core\extensions\data\behavior\Timestamp',
 		'base_core\extensions\data\behavior\Searchable' => [
 			'fields' => [
+				'Owner.name',
 				'type',
 				'region'
 			]
@@ -49,13 +61,6 @@ class Blocks extends \base_core\models\Base {
 				'value_number' => 'number',
 				'value_money' => 'money'
 			]
-		]
-	];
-
-	public $belongsTo = [
-		'ValueMedia' => [
-			'to' => 'base_media\models\Media',
-			'key' =>  'value_media_id'
 		]
 	];
 
