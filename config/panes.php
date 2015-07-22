@@ -18,7 +18,7 @@ use lithium\g11n\Message;
 extract(Message::aliases());
 
 Panes::register('authoring.contents', [
-	'title' => $t('Contents'),
+	'title' => $t('Contents', ['scope' => 'cms_content']),
 	'url' => ['controller' => 'contents', 'action' => 'index', 'library' => 'cms_content', 'admin' => true],
 	'weight' => 60
 ]);
