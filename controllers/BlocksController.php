@@ -74,7 +74,7 @@ class BlocksController extends \base_core\controllers\BaseController {
 	}
 
 	protected function _selects($item = null) {
-		$user = Auth::check('default');
+		$user = Gate::user(true);
 
 		$regions = Regions::find('all')
 			->find(function($item) use ($user) {
