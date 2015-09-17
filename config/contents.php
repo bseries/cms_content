@@ -19,6 +19,7 @@ namespace cms_content\config;
 
 use lithium\g11n\Message;
 use cms_content\models\Types;
+use textual\Modulation as Textual;
 
 extract(Message::aliases());
 
@@ -45,7 +46,12 @@ Types::register('richtext', [
 		]);
 	},
 	'format' => function($context, $item) {
-		return $context->editor->parse($item->value_text);
+		$result = $context->editor->parse($item->value_text);
+
+		if ($type === 'preview') {
+			$result = strip_tags(Textual::limit($result, 40));
+		}
+		return $result;
 	}
 ]);
 
@@ -100,8 +106,13 @@ Types::register('page', [
 			'size' => 'beta'
 		]);
 	},
-	'format' => function($context, $item) {
-		return $context->editor->parse($item->value_text);
+	'format' => function($context, $item, $type) {
+		$result = $context->editor->parse($item->value_text);
+
+		if ($type === 'preview') {
+			$result = strip_tags(Textual::limit($result, 40));
+		}
+		return $result;
 	}
 ]);
 

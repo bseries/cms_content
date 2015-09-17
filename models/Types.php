@@ -57,9 +57,10 @@ class Types extends \base_core\models\Base {
 		return $handler($context, $item);
 	}
 
-	public function format($entity, $context, $item) {
+	// $type is either full or preview.
+	public function format($entity, $context, $item, $type = 'full') {
 		$handler = $entity->data(__FUNCTION__);
-		return $handler($context, $item);
+		return $handler($context, $item, $type);
 	}
 }
 

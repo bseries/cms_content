@@ -1,6 +1,5 @@
 <?php
 
-use textual\Modulation as Textual;
 use lithium\g11n\Message;
 
 $t = function($message, array $options = []) {
@@ -63,7 +62,7 @@ $this->set([
 					<td class="flag"><i class="material-icons"><?= ($item->is_published ? 'done' : '') ?></i>
 					<td class="emphasize region"><?= $item->region()->title ?>
 					<td class="value media">
-						<?php echo $item->format($this) ?>
+						<?php echo $item->format($this, 'preview') ?>
 					<td class="date modified">
 						<time datetime="<?= $this->date->format($item->modified, 'w3c') ?>">
 							<?= $this->date->format($item->modified, 'date') ?>

@@ -121,8 +121,9 @@ class Blocks extends \base_core\models\Base {
 		return $entity->type()->input($context, $entity);
 	}
 
-	public function format($entity, $context) {
-		return $entity->type()->format($context, $entity);
+	// $type is either full or preview.
+	public function format($entity, $context, $type = 'full') {
+		return $entity->type()->format($context, $entity, $type);
 	}
 
 	public function value($entity) {
