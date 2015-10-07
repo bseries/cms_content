@@ -20,7 +20,7 @@ use lithium\net\http\Router;
 Router::scope('admin', function() {
 	$persist = ['admin', 'controller', 'library'];
 
-	Router::connect("/admin/cms-content/locks/add/region:{:region:[a-z\.\-\_\:]+}", [
+	Router::connect("/cms-content/locks/add/region:{:region:[a-z\.\-\_\:]+}", [
 		'controller' => 'blocks',
 		'action' => 'add',
 		'library' => 'cms_content',
