@@ -45,7 +45,7 @@ class BlocksController extends \base_core\controllers\BaseController {
 		]);
 		$item->type = $item->region()->type;
 
-		if (!$item->region()->hasAccess(Gate::user())) {
+		if (!$item->region()->hasAccess(Gate::user(true))) {
 			throw new AccessDeniedException('No access to region.');
 		}
 
