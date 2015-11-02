@@ -45,7 +45,7 @@ Types::register('richtext', [
 			'size' => 'beta'
 		]);
 	},
-	'format' => function($context, $item) {
+	'format' => function($context, $item, $type) {
 		$result = $context->editor->parse($item->value_text);
 
 		if ($type === 'preview') {
