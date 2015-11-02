@@ -64,6 +64,10 @@ class Regions extends \base_core\models\Base {
 			'access' => ['user.role:admin']
 		]);
 	}
+
+	public static function has($name) {
+		return isset(static::$_data[$name]);
+	}
 }
 
 Regions::init();
