@@ -70,7 +70,7 @@ class Blocks extends \base_core\models\Base {
 	];
 
 	public static function get($region) {
-		if (!Regions::has($region)) {
+		if (isset(Regions::registry(true)[$region])) {
 			throw new OutOfBoundsException("Region `{$region}` not available.");
 		}
 		$cacheKey = static::generateItemCacheKey($region);

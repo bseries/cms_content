@@ -33,6 +33,7 @@ class Regions extends \base_core\models\Base {
 	protected static $_data = [];
 
 	public static function init() {
+		trigger_error('Deprecated use class in cms\content NS.', E_USER_DEPRECATED);
 		static::finder('all', function($self, $params, $chain) {
 			return new Collection(['data' => static::$_data]);
 		});
@@ -50,6 +51,7 @@ class Regions extends \base_core\models\Base {
 	}
 
 	public static function register($name, array $options = []) {
+		trigger_error('Deprecated use class in cms\content NS.', E_USER_DEPRECATED);
 		if (!isset($options['type'])) {
 			$message = 'You must provide a type when registering a region.';
 			throw new Exception($message);
@@ -66,6 +68,7 @@ class Regions extends \base_core\models\Base {
 	}
 
 	public static function has($name) {
+		trigger_error('Deprecated use class in cms\content NS.', E_USER_DEPRECATED);
 		return isset(static::$_data[$name]);
 	}
 }

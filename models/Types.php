@@ -29,6 +29,8 @@ class Types extends \base_core\models\Base {
 	protected static $_data = [];
 
 	public static function init() {
+		trigger_error('Deprecated use class in cms\content NS.', E_USER_DEPRECATED);
+
 		static::finder('all', function($self, $params, $chain) {
 			return new Collection(['data' => static::$_data]);
 		});
@@ -46,6 +48,7 @@ class Types extends \base_core\models\Base {
 	}
 
 	public static function register($name, array $options = []) {
+		trigger_error('Deprecated use class in cms\content NS.', E_USER_DEPRECATED);
 		static::$_data[$name] = static::create($options + [
 			'input' => function($context, $item) {},
 			'format' => function($context, $item) {}
@@ -53,12 +56,14 @@ class Types extends \base_core\models\Base {
 	}
 
 	public function input($entity, $context, $item) {
+		trigger_error('Deprecated use class in cms\content NS.', E_USER_DEPRECATED);
 		$handler = $entity->data(__FUNCTION__);
 		return $handler($context, $item);
 	}
 
 	// $type is either full or preview.
 	public function format($entity, $context, $item, $type = 'full') {
+		trigger_error('Deprecated use class in cms\content NS.', E_USER_DEPRECATED);
 		$handler = $entity->data(__FUNCTION__);
 		return $handler($context, $item, $type);
 	}
