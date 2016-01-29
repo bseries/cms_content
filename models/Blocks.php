@@ -20,8 +20,8 @@ namespace cms_content\models;
 use Exception;
 use OutOfBoundsException;
 use base_media\models\Media;
-use cms_content\models\Regions;
-use cms_content\models\Types;
+use cms_content\cms\content\Regions;
+use cms_content\cms\content\Types;
 use lithium\storage\Cache;
 
 // Operations are heavily cached in order to minimize costs of defining "dynamic"
@@ -102,19 +102,11 @@ class Blocks extends \base_core\models\Base {
 			// @deprecated
 			throw new Exception('Field parameter on Blocks::region() is not supported anymore.');
 		}
-		return Regions::find('first', [
-			'conditions' =>  [
-				'name' => $entity->region
-			]
-		]);
+		return Regions::registry($entity->region);
 	}
 
 	public function type($entity) {
-		return Types::find('first', [
-			'conditions' =>  [
-				'name' => $entity->type
-			]
-		]);
+		return Types::registry($entity->type);
 	}
 
 	public function input($entity, $context) {

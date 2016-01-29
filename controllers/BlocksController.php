@@ -20,7 +20,7 @@ namespace cms_content\controllers;
 use base_core\extensions\cms\Settings;
 use base_core\models\Users;
 use base_core\security\Gate;
-use cms_content\models\Regions;
+use cms_content\cms\content\Regions;
 use li3_access\security\AccessDeniedException;
 use li3_flash_message\extensions\storage\FlashMessage;
 use lithium\g11n\Message;
@@ -81,12 +81,12 @@ class BlocksController extends \base_core\controllers\BaseController {
 	protected function _selects($item = null) {
 		$user = Gate::user(true);
 
-		$regions = Regions::find('all')
+		$regions = Regions::registry(true)
 			->find(function($item) use ($user) {
 				return $item->hasAccess($user);
 			})
 			->map(function($item) {
-				return $item->title;
+				return $item->title();
 			})->to('array');
 
 		return compact('regions', 'users');

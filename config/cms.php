@@ -18,7 +18,7 @@
 namespace cms_content\config;
 
 use lithium\g11n\Message;
-use cms_content\models\Types;
+use cms_content\cms\content\Types;
 use textual\Modulation as Textual;
 
 extract(Message::aliases());
