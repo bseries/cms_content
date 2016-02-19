@@ -69,6 +69,4 @@ class Types extends \base_core\models\Base {
 	}
 }
 
-Types::init();
-
 ?>

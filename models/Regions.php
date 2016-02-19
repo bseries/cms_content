@@ -73,6 +73,4 @@ class Regions extends \base_core\models\Base {
 	}
 }
 
-Regions::init();
-
 ?>
