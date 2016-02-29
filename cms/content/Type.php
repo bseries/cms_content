@@ -44,12 +44,12 @@ class Type {
 	}
 
 	public function input($context, $item) {
-		return $this->_config['input']($context, $item);
+		return $this->_config[__FUNCTION__]($context, $item);
 	}
 
 	// $type is either full or preview.
 	public function format($context, $item, $type = 'full') {
-		return $this->_config['input']($context, $item, $type);
+		return $this->_config[__FUNCTION__]($context, $item, $type);
 	}
 }
 

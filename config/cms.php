@@ -73,7 +73,9 @@ Types::register('richtext', [
 		}
 	},
 	'format' => function($context, $item, $type) {
-		$result = $context->editor->parse($item->value_text);
+		$result = $context->editor->parse($item->value_text, [
+			'mediaVersion' => 'fix3admin'
+		]);
 
 		if ($type === 'preview') {
 			$result = strip_tags(Textual::limit($result, 40));
