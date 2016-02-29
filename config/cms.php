@@ -29,7 +29,7 @@ Types::register('text', [
 			$output = '';
 
 			foreach ($item->translate('value_text') as $locale => $value) {
-				$output .= $context->form->field('value_text', [
+				$output .= $context->editor->field("i18n.value_text.{$locale}", [
 					'label' => $t('Text', ['scope' => 'cms_content']) . ' (' . $context->g11n->name($locale) . ')',
 					'value' => $item->value_text,
 					'type' => 'text'
@@ -55,7 +55,7 @@ Types::register('richtext', [
 			$output = '';
 
 			foreach ($item->translate('value_text') as $locale => $value) {
-				$output .= $context->editor->field('value_text', [
+				$output .= $context->editor->field("i18n.value_text.{$locale}", [
 					'label' => $t('Content', ['scope' => 'cms_content']) . ' (' . $context->g11n->name($locale) . ')',
 					'value' => $item->value_text,
 					'features' => 'minimal',
