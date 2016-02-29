@@ -43,7 +43,7 @@ class BlocksController extends \base_core\controllers\BaseController {
 			// Will not be saved without error when there is no such field.
 			'owner_id' => Gate::user(true, 'id')
 		]);
-		$item->type = $item->region()->type;
+		$item->type = $item->region()->type();
 
 		if (!$item->region()->hasAccess(Gate::user(true))) {
 			throw new AccessDeniedException('No access to region.');
