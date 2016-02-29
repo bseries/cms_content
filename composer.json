@@ -11,14 +11,15 @@
       }
     ],
     "require": {
-        "php": ">=5.5.0",
         "atelierdisko/base_core": "1.4.*",
         "atelierdisko/base_media": "1.4.*",
         "atelierdisko/cms_core": "1.4.*",
         "atelierdisko/li3_flash_message": "1.0.*@beta",
-        "unionofrad/lithium": "1.0.*@dev",
         "composer/installers": "1.*@stable",
-        "davidpersson/textual": "1.0.*@stable"
+        "davidpersson/li3_translate": "2.*@beta",
+        "davidpersson/textual": "1.0.*@stable",
+        "php": ">=5.5.0",
+        "unionofrad/lithium": "1.0.*@dev"
     },
     "repositories": [
       { "type": "vcs", "url": "git@code.atelierdisko.de:base_core" },

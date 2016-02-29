@@ -69,6 +69,18 @@ class Blocks extends \base_core\models\Base {
 		]
 	];
 
+	public static function init() {
+		$model = static::_object();
+
+		if (PROJECT_LOCALE !== PROJECT_LOCALES) {
+			static::bindBehavior('li3_translate\extensions\data\behavior\Translatable', [
+				'fields' => ['value_text'],
+				'locale' => PROJECT_LOCALE,
+				'locales' => explode(' ', PROJECT_LOCALES),
+				'strategy' => 'inline'
+			]);
+		}
+	}
 	public static function get($region) {
 		if (!isset(Regions::registry(true)[$region])) {
 			throw new OutOfBoundsException("Region `{$region}` not available.");
@@ -130,6 +142,8 @@ class Blocks extends \base_core\models\Base {
 	}
 
 }
+
+Blocks::init();
 
 // Invalidate caches.
 Blocks::applyFilter('delete', function($self, $params, $chain) {

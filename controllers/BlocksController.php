@@ -64,6 +64,7 @@ class BlocksController extends \base_core\controllers\BaseController {
 				]);
 			}
 		}
+		$isTranslated = $model::hasBehavior('Translatable');
 
 		$useOwner = Settings::read('security.checkOwner');
 		$useOwner = $useOwner && Gate::checkRight('owner');
@@ -75,7 +76,7 @@ class BlocksController extends \base_core\controllers\BaseController {
 		}
 
 		$this->_render['template'] = 'admin_form';
-		return compact('item', 'users', 'useOwner') + $this->_selects($item);
+		return compact('item', 'users', 'useOwner', 'isTranslated') + $this->_selects($item);
 	}
 
 	protected function _selects($item = null) {

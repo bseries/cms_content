@@ -25,11 +25,24 @@ extract(Message::aliases());
 
 Types::register('text', [
 	'input' => function($context, $item) use ($t) {
-		return $context->form->field('value_text', [
-			'label' => $t('Text', ['scope' => 'cms_content']),
-			'type' => 'text',
-			'value' => $item->value_text
-		]);
+		if ($context['isTranslated']) {
+			$output = '';
+
+			foreach ($item->translate('value_text') as $locale => $value) {
+				$output .= $context->form->field('value_text', [
+					'label' => $t('Text', ['scope' => 'cms_content']) . ' (' . $context->g11n->name($locale) . ')',
+					'value' => $item->value_text,
+					'type' => 'text'
+				]);
+			}
+			return $output;
+		} else {
+			return $context->form->field('value_text', [
+				'label' => $t('Text', ['scope' => 'cms_content']),
+				'type' => 'text',
+				'value' => $item->value_text
+			]);
+		}
 	},
 	'format' => function($context, $item) {
 		return $item->value_text;
@@ -38,12 +51,26 @@ Types::register('text', [
 
 Types::register('richtext', [
 	'input' => function($context, $item) use ($t) {
-		return $context->editor->field('value_text', [
-			'label' => $t('Content', ['scope' => 'cms_content']),
-			'value' => $item->value_text,
-			'features' => 'minimal',
-			'size' => 'beta'
-		]);
+		if ($context['isTranslated']) {
+			$output = '';
+
+			foreach ($item->translate('value_text') as $locale => $value) {
+				$output .= $context->editor->field('value_text', [
+					'label' => $t('Content', ['scope' => 'cms_content']) . ' (' . $context->g11n->name($locale) . ')',
+					'value' => $item->value_text,
+					'features' => 'minimal',
+					'size' => 'beta'
+				]);
+			}
+			return $output;
+		} else {
+			return $context->editor->field('value_text', [
+				'label' => $t('Content', ['scope' => 'cms_content']),
+				'value' => $item->value_text,
+				'features' => 'minimal',
+				'size' => 'beta'
+			]);
+		}
 	},
 	'format' => function($context, $item, $type) {
 		$result = $context->editor->parse($item->value_text);
