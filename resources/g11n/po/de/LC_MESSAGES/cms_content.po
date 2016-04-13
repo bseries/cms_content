@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cms_content 1.0\n"
 "Report-Msgid-Bugs-To: info@atelierdisko.de\n"
-"POT-Creation-Date: 2015-07-09 14:47+0200\n"
-"PO-Revision-Date: 2015-07-09 14:48+0100\n"
+"POT-Creation-Date: 2016-04-13 11:09+0200\n"
+"PO-Revision-Date: 2016-04-13 11:12+0100\n"
 "Last-Translator: David Persson <davidpersson@gmx.de>\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -18,90 +18,108 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.5.7\n"
 
-#: config/contents.php:21 config/contents.php:23
+#: config/cms.php:33 config/cms.php:41
 msgid "Text"
 msgstr "Text"
 
-#: config/contents.php:28
-msgid "Rich-Text Content"
-msgstr "Rich-Text Inhalt"
-
-#: config/contents.php:30 config/contents.php:38
-#: views/contents/admin_index.html.php:37
+#: config/cms.php:59 config/cms.php:68 config/cms.php:132
+#: views/blocks/admin_index.html.php:45
 msgid "Content"
 msgstr "Inhalt"
 
-#: config/contents.php:36
-msgid "Page Content"
-msgstr "Seiten Inhalt"
+#: config/cms.php:104
+msgid "Number"
+msgstr "Nummer"
 
-#: config/contents.php:44
-msgid "Media"
-msgstr "Medien"
+#: config/cms.php:119
+msgid "Money"
+msgstr "Monetärer Wert"
 
-#: config/panes.php:21
-msgid "Contents"
-msgstr "Inhalte"
+#: config/panes.php:26
+msgid "Content Blocks"
+msgstr "Inhaltsblöcke"
 
-#: controllers/ContentsController.php:40
+#: config/widgets.php:27
+msgid "Content blocks"
+msgstr "Inhaltsblöcke"
+
+#: controllers/BlocksController.php:56
 msgid "Successfully saved."
 msgstr "Erfolgreich gespeichert."
 
-#: controllers/ContentsController.php:44
+#: controllers/BlocksController.php:62
 msgid "Failed to save."
 msgstr "Speichern fehlgeschlagen."
 
-#: views/contents/admin_form.html.php:14
-msgid "content"
-msgstr "Inhalt"
+#: views/blocks/admin_form.html.php:14
+msgid "content block"
+msgstr "Inhaltsblock"
 
-#: views/contents/admin_form.html.php:18
+#: views/blocks/admin_form.html.php:18
 msgid "published"
 msgstr "publiziert"
 
-#: views/contents/admin_form.html.php:18
+#: views/blocks/admin_form.html.php:18
 msgid "unpublished"
 msgstr "unpubliziert"
 
-#: views/contents/admin_form.html.php:54
-#: views/contents/admin_index.html.php:36
+#: views/blocks/admin_form.html.php:31
+msgid "Access"
+msgstr "Zugriff"
+
+#: views/blocks/admin_form.html.php:37 views/blocks/admin_index.html.php:48
+msgid "Owner"
+msgstr "Besitzer"
+
+#: views/blocks/admin_form.html.php:48 views/blocks/admin_index.html.php:44
 msgid "Region"
 msgstr "Bereich"
 
-#: views/contents/admin_form.html.php:65
-#: views/contents/admin_index.html.php:70
+#: views/blocks/admin_form.html.php:62
+msgid "delete"
+msgstr "löschen"
+
+#: views/blocks/admin_form.html.php:69 views/blocks/admin_index.html.php:75
 msgid "publish"
 msgstr "publizieren"
 
-#: views/contents/admin_form.html.php:65
-#: views/contents/admin_index.html.php:70
+#: views/blocks/admin_form.html.php:69 views/blocks/admin_index.html.php:75
 msgid "unpublish"
 msgstr "depublizieren"
 
-#: views/contents/admin_form.html.php:67
+#: views/blocks/admin_form.html.php:71
 msgid "save"
 msgstr "speichern"
 
-#: views/contents/admin_index.html.php:15
-msgid "contents"
-msgstr "Inhalte"
+#: views/blocks/admin_index.html.php:13
+msgid "content blocks"
+msgstr "Inhaltsblöcke"
 
-#: views/contents/admin_index.html.php:35
+#: views/blocks/admin_index.html.php:43
 msgid "publ.?"
 msgstr "publ.?"
 
-#: views/contents/admin_index.html.php:38
+#: views/blocks/admin_index.html.php:46
 msgid "Modified"
 msgstr "Bearbeitet"
 
-#: views/contents/admin_index.html.php:43
+#: views/blocks/admin_index.html.php:54
 msgid "Filter"
 msgstr "Filter"
 
-#: views/contents/admin_index.html.php:71
+#: views/blocks/admin_index.html.php:76
 msgid "open"
 msgstr "öffnen"
 
-#: views/contents/admin_index.html.php:76
+#: views/blocks/admin_index.html.php:81
 msgid "No items available, yet."
 msgstr "Es sind noch keine Elemente verfügbar."
+
+#~ msgid "Rich-Text Content"
+#~ msgstr "Rich-Text Inhalt"
+
+#~ msgid "Page Content"
+#~ msgstr "Seiten Inhalt"
+
+#~ msgid "Media"
+#~ msgstr "Medien"
