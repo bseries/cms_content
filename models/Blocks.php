@@ -24,8 +24,12 @@ use cms_content\cms\content\Regions;
 use cms_content\cms\content\Types;
 use lithium\storage\Cache;
 
-// Operations are heavily cached in order to minimize costs of defining "dynamic"
-// regions in a site.
+// FIXME Find Operations shoudl be heavily cached in order to
+// minimize costs of defining "dynamic" regions in a site.
+// This used to be the case with the get() method. But we dropped
+// support for it in favor of using plain find(). Caching should
+// in the future hook into find() and must also find a good way
+// of invalidating the cache.
 class Blocks extends \base_core\models\Base {
 
 	protected $_meta = [
@@ -94,15 +98,15 @@ class Blocks extends \base_core\models\Base {
 		return Types::registry($entity->type);
 	}
 
-	public function input($entity, $context) {
-		return $entity->type()->input($context, $entity);
-	}
-
+	// Formats the content blocks' value using registered handler.
+	// $context is the rendering context (usually $this when called from the view.
 	// $type is either full or preview.
 	public function format($entity, $context, $type = 'full') {
 		return $entity->type()->format($context, $entity, $type);
 	}
 
+	// Returns the content blocks' value (without formatting applied). This can
+	// be depend on the content block type a number, a string or a Media entity.
 	public function value($entity) {
 		if ($entity->value_media_id) {
 			return Media::find('first', ['conditions' => ['id' => $entity->value_media_id]]);
@@ -112,6 +116,13 @@ class Blocks extends \base_core\models\Base {
 				return $entity->{$field};
 			}
 		}
+	}
+
+	// Renders an HTML input field for the block, using the registered renderer.
+	// Used mainly only inside the admin.
+	// $context is the rendering context (usually $this when called from the view.
+	public function input($entity, $context) {
+		return $entity->type()->input($context, $entity);
 	}
 
 	/* Deprecated / BC */
