@@ -58,7 +58,7 @@ Types::register('richtext', [
 				$output .= $context->editor->field("i18n.value_text.{$locale}", [
 					'label' => $t('Content', ['scope' => 'cms_content']) . ' (' . $context->g11n->name($locale) . ')',
 					'value' => $value,
-					'features' => 'minimal',
+					'features' => 'full',
 					'size' => 'beta'
 				]);
 			}
@@ -67,7 +67,7 @@ Types::register('richtext', [
 			return $context->editor->field('value_text', [
 				'label' => $t('Content', ['scope' => 'cms_content']),
 				'value' => $item->value_text,
-				'features' => 'minimal',
+				'features' => 'full',
 				'size' => 'beta'
 			]);
 		}
@@ -126,8 +126,12 @@ Types::register('money', [
 	}
 ]);
 
+/* Deprecated / BC */
+
 Types::register('page', [
 	'input' => function($context, $item) use ($t) {
+		trigger_error('Content type page is deprecated, use cms_page instead.', E_USER_DEPRECATED);
+
 		return $context->editor->field('value_text', [
 			'label' => $t('Content', ['scope' => 'cms_content']),
 			'value' => $item->value_text,
@@ -136,6 +140,8 @@ Types::register('page', [
 		]);
 	},
 	'format' => function($context, $item, $type) {
+		trigger_error('Content type page is deprecated, use cms_page instead.', E_USER_DEPRECATED);
+
 		$result = $context->editor->parse($item->value_text);
 
 		if ($type === 'preview') {
