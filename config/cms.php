@@ -92,8 +92,11 @@ Types::register('media', [
 		]);
 	},
 	'format' => function($context, $item) {
-		return $context->media->image($item->value()->version('fix3admin')->url('http'), [
-			'data-media-id' => $item->value()->id
+		if (!$medium = $item->value()) {
+			return;
+		}
+		return $context->media->image($medium->version('fix3admin')->url('http'), [
+			'data-media-id' => $medium->id
 		]);
 	}
 ]);
