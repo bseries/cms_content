@@ -69,10 +69,7 @@ class BlocksController extends \base_core\controllers\BaseController {
 		$useOwner = Settings::read('security.checkOwner');
 		$useOwner = $useOwner && Gate::checkRight('owner');
 		if ($useOwner) {
-			$users = Users::find('list', [
-				'order' => 'name',
-				'conditions' => ['is_active' => true]
-			]);
+			$users = $this->_users($item, ['field' => 'owner_id']);
 		}
 
 		$this->_render['template'] = 'admin_form';
