@@ -18,7 +18,6 @@
 namespace cms_content\controllers;
 
 use base_core\extensions\cms\Settings;
-use base_core\models\Users;
 use base_core\security\Gate;
 use cms_content\cms\content\Regions;
 use li3_access\security\AccessDeniedException;
@@ -31,6 +30,7 @@ class BlocksController extends \base_core\controllers\BaseController {
 	use \base_core\controllers\AdminEditTrait;
 	use \base_core\controllers\AdminDeleteTrait;
 	use \base_core\controllers\AdminPublishTrait;
+	use \base_core\controllers\UsersTrait;
 
 	public function admin_add() {
 		extract(Message::aliases());
