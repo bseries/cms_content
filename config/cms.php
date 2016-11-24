@@ -129,29 +129,4 @@ Types::register('money', [
 	}
 ]);
 
-/* Deprecated / BC */
-
-Types::register('page', [
-	'input' => function($context, $item) use ($t) {
-		trigger_error('Content type page is deprecated, use cms_page instead.', E_USER_DEPRECATED);
-
-		return $context->editor->field('value_text', [
-			'label' => $t('Content', ['scope' => 'cms_content']),
-			'value' => $item->value_text,
-			'features' => 'full',
-			'size' => 'beta'
-		]);
-	},
-	'format' => function($context, $item, $type) {
-		trigger_error('Content type page is deprecated, use cms_page instead.', E_USER_DEPRECATED);
-
-		$result = $context->editor->parse($item->value_text);
-
-		if ($type === 'preview') {
-			$result = strip_tags(Textual::limit($result, 40));
-		}
-		return $result;
-	}
-]);
-
 ?>

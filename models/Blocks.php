@@ -87,10 +87,6 @@ class Blocks extends \base_core\models\Base {
 	}
 
 	public function region($entity) {
-		if (func_num_args() > 1) {
-			// @deprecated
-			throw new Exception('Field parameter on Blocks::region() is not supported anymore.');
-		}
 		return Regions::registry($entity->region);
 	}
 
@@ -124,54 +120,14 @@ class Blocks extends \base_core\models\Base {
 	public function input($entity, $context) {
 		return $entity->type()->input($context, $entity);
 	}
-
-	/* Deprecated / BC */
-
-	public static function get($region) {
-		if (!isset(Regions::registry(true)[$region])) {
-			throw new OutOfBoundsException("Region `{$region}` not available.");
-		}
-		$cacheKey = static::generateItemCacheKey($region);
-
-		if ($result = Cache::read('default', $cacheKey)) {
-			return $result;
-		}
-		$result = static::find('first', [
-			'conditions' => [
-				'region' => $region,
-				'is_published' => true
-			],
-			'order' => ['id' => 'ASC']
-		]);
-		if (!$result) {
-			// throw new Exception("No content for region `{$region}` available.");
-			return $result;
-		}
-		Cache::write('default', $cacheKey, $result, Cache::PERSIST);
-		return $result;
-	}
-
-	public static function generateItemCacheKey($region) {
-		return 'cms_content:contents:item:' . $region;
-	}
-
 }
 
 Blocks::init();
 
-// Invalidate caches.
-// @deprecated
-Blocks::applyFilter('delete', function($self, $params, $chain) {
-	Cache::delete('default', Blocks::generateItemCacheKey($params['entity']->region));
-	return $chain->next($self, $params, $chain);
-});
 Blocks::applyFilter('save', function($self, $params, $chain) {
 	if (isset($params['data']['value_media_id']) && empty($params['data']['value_media_id'])) {
 		$params['data']['value_media_id'] = null;
 	}
-
-	// @deprecated
-	Cache::delete('default', Blocks::generateItemCacheKey($params['entity']->region));
 	return $chain->next($self, $params, $chain);
 });
 
