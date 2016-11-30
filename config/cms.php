@@ -95,7 +95,7 @@ Types::register('media', [
 		if (!$medium = $item->value()) {
 			return;
 		}
-		return $context->media->image($medium->version('fix3admin')->url('http'), [
+		return $context->media->image($medium->version('fix3admin'), [
 			'data-media-id' => $medium->id
 		]);
 	}
