@@ -113,7 +113,7 @@ msgstr "öffnen"
 
 #: views/blocks/admin_index.html.php:81
 msgid "No items available, yet."
-msgstr "Es sind noch keine Elemente verfügbar."
+msgstr "Es sind noch keine Einträge verfügbar."
 
 #~ msgid "Rich-Text Content"
 #~ msgstr "Rich-Text Inhalt"
