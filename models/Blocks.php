@@ -24,12 +24,16 @@ use cms_content\cms\content\Regions;
 use cms_content\cms\content\Types;
 use lithium\storage\Cache;
 
-// FIXME Find Operations shoudl be heavily cached in order to
-// minimize costs of defining "dynamic" regions in a site.
-// This used to be the case with the get() method. But we dropped
-// support for it in favor of using plain find(). Caching should
-// in the future hook into find() and must also find a good way
-// of invalidating the cache.
+// Blocks are small units of content, that can be injected into the site. This one of the
+// more traditional CMS means that are provided.
+//
+// Blocks access is restricted additionally by region access controls. Adding or deleting
+// a block to a region is considered modifying that region. Modifying is not.
+//
+// FIXME Find Operations shoudl be heavily cached in order to minimize costs of defining
+// "dynamic" regions in a site. This used to be the case with the get() method. But we
+// dropped support for it in favor of using plain find(). Caching should in the future
+// hook into find() and must also find a good way of invalidating the cache.
 class Blocks extends \base_core\models\Base {
 
 	protected $_meta = [
