@@ -58,7 +58,7 @@ $this->set([
 
 		<div class="bottom-actions">
 			<div class="bottom-actions__left">
-				<?php if ($item->exists()): ?>
+				<?php if ($item->exists() && $isDeletable): ?>
 					<?= $this->html->link($t('delete'), [
 						'action' => 'delete', 'id' => $item->id
 					], ['class' => 'button large delete']) ?>

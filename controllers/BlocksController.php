@@ -27,11 +27,15 @@ use lithium\g11n\Message;
 class BlocksController extends \base_core\controllers\BaseController {
 
 	use \base_core\controllers\AdminIndexTrait;
-	use \base_core\controllers\AdminEditTrait;
+	use \base_core\controllers\AdminEditTrait {
+		\base_core\controllers\AdminEditTrait::admin_edit as protected _admin_edit;
+	}
 	use \base_core\controllers\AdminDeleteTrait;
 	use \base_core\controllers\AdminPublishTrait;
 	use \base_core\controllers\UsersTrait;
 
+	// Overridden as not the content block itself carries access rights
+	// but the region which belongs to each content block.
 	public function admin_add() {
 		extract(Message::aliases());
 
@@ -65,6 +69,7 @@ class BlocksController extends \base_core\controllers\BaseController {
 			}
 		}
 		$isTranslated = $model::hasBehavior('Translatable');
+		$isDeletable = $item->region()->hasAccess(Gate::user(true));
 
 		$useOwner = Settings::read('security.checkOwner');
 		$useOwner = $useOwner && Gate::checkRight('owner');
@@ -73,7 +78,14 @@ class BlocksController extends \base_core\controllers\BaseController {
 		}
 
 		$this->_render['template'] = 'admin_form';
-		return compact('item', 'users', 'useOwner', 'isTranslated') + $this->_selects($item);
+		return compact('item', 'users', 'useOwner', 'isTranslated', 'isDeletable') + $this->_selects($item);
+	}
+
+	// Overridden to provide isDeletable feature.
+	public function admin_edit() {
+		$return = $this->_admin_edit();
+		$return['isDeletable'] = $return['item']->region()->hasAccess(Gate::user(true));
+		return $return;
 	}
 
 	protected function _selects($item = null) {
