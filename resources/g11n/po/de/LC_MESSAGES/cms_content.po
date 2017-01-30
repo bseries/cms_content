@@ -69,7 +69,7 @@ msgstr "Zugriff"
 
 #: views/blocks/admin_form.html.php:37 views/blocks/admin_index.html.php:48
 msgid "Owner"
-msgstr "Besitzer"
+msgstr "Eigentümer"
 
 #: views/blocks/admin_form.html.php:48 views/blocks/admin_index.html.php:44
 msgid "Region"
