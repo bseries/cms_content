@@ -69,7 +69,7 @@ $this->set([
 						</time>
 					<?php if ($useOwner): ?>
 						<td class="user">
-							<?= $item->owner()->name ?>
+							<?= $this->user->link($item->owner()) ?>
 					<?php endif ?>
 					<td class="actions">
 						<?= $this->html->link($item->is_published ? $t('unpublish') : $t('publish'), ['id' => $item->id, 'action' => $item->is_published ? 'unpublish': 'publish', 'library' => 'cms_content'], ['class' => 'button']) ?>
