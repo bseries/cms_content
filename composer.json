@@ -17,7 +17,7 @@
         "atelierdisko/li3_access": "2.*@stable || 2.1.0@dev",
         "atelierdisko/li3_flash_message": "1.*",
         "composer/installers": "1.*@stable",
-        "davidpersson/li3_translate": "2.* || 2.1.0@dev",
+        "davidpersson/li3_translate": "2.* || 2.1@dev",
         "davidpersson/textual": "1.0.*@stable",
         "php": "^5.5 || ^7.0",
         "unionofrad/lithium": "^1.1"
