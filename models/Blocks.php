@@ -22,6 +22,7 @@ use OutOfBoundsException;
 use base_media\models\Media;
 use cms_content\cms\content\Regions;
 use cms_content\cms\content\Types;
+use lithium\aop\Filters;
 use lithium\storage\Cache;
 
 // Blocks are small units of content, that can be injected into the site. This one of the
@@ -129,11 +130,11 @@ class Blocks extends \base_core\models\Base {
 
 Blocks::init();
 
-Blocks::applyFilter('save', function($self, $params, $chain) {
+Filters::apply(Blcoks::class, 'save', function($next, $params) {
 	if (isset($params['data']['value_media_id']) && empty($params['data']['value_media_id'])) {
 		$params['data']['value_media_id'] = null;
 	}
-	return $chain->next($self, $params, $chain);
+	return $next($params);
 });
 
 ?>
