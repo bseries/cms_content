@@ -14,7 +14,7 @@
         "atelierdisko/base_core": "1.5.*@dev",
         "atelierdisko/base_media": "1.5.*@dev",
         "atelierdisko/cms_core": "1.5.*@dev",
-        "atelierdisko/li3_access": "2.*@stable || 2.1.x-dev",
+        "atelierdisko/li3_access": "2.*@stable || 2.1.0@dev",
         "atelierdisko/li3_flash_message": "1.*",
         "composer/installers": "1.*@stable",
         "davidpersson/li3_translate": "^2.1@dev",
