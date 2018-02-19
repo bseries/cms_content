@@ -2,7 +2,7 @@
     "name": "bseries/cms_content",
     "description": "Generic Content functionality for Bureau.",
     "type": "lithium-library",
-    "license": "proprietary",
+    "license": ["BSD-3-Clause"],
     "require": {
         "bseries/base_core": "1.5.x-dev",
         "bseries/base_media": "1.5.x-dev",
