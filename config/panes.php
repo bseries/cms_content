@@ -14,6 +14,12 @@ use lithium\g11n\Message;
 
 extract(Message::aliases());
 
+Panes::register('cms.pages', [
+	'title' => $t('Pages', ['scope' => 'cms_content']),
+	'url' => ['controller' => 'pages', 'action' => 'index', 'library' => 'cms_content', 'admin' => true],
+	'weight' => 59 // right before content blocks
+]);
+
 Panes::register('cms.contents', [
 	'title' => $t('Content Blocks', ['scope' => 'cms_content']),
 	'url' => ['controller' => 'blocks', 'action' => 'index', 'library' => 'cms_content', 'admin' => true],
