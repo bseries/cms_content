@@ -75,8 +75,9 @@ class BlocksController extends \base_core\controllers\BaseController {
 
 	// Overridden to provide isDeletable feature.
 	public function admin_edit() {
-		$return = $this->_admin_edit();
-		$return['isDeletable'] = $return['item']->region()->hasAccess(Gate::user(true));
+		if (is_array($return = $this->_admin_edit())) {
+			$return['isDeletable'] = $return['item']->region()->hasAccess(Gate::user(true));
+		}
 		return $return;
 	}
 
