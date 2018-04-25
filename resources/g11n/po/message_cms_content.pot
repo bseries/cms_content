@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cms_content 1.0\n"
 "Report-Msgid-Bugs-To: info@atelierdisko.de\n"
-"POT-Creation-Date: 2016-04-13 11:09+0200\n"
+"POT-Creation-Date: 2018-04-25 17:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,36 +17,40 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: config/cms.php:33 config/cms.php:41
+#: config/cms.php:25 config/cms.php:33
 msgid "Text"
 msgstr ""
 
-#: config/cms.php:59 config/cms.php:68 config/cms.php:132
-#: views/blocks/admin_index.html.php:45
+#: config/cms.php:51 config/cms.php:60 views/blocks/admin_index.html.php:45
+#: views/pages/admin_form.html.php:80 views/pages/admin_form.html.php:88
 msgid "Content"
 msgstr ""
 
-#: config/cms.php:104
+#: config/cms.php:99
 msgid "Number"
 msgstr ""
 
-#: config/cms.php:119
+#: config/cms.php:114
 msgid "Money"
 msgstr ""
 
-#: config/panes.php:26
+#: config/panes.php:18 config/widgets.php:20
+msgid "Pages"
+msgstr ""
+
+#: config/panes.php:24
 msgid "Content Blocks"
 msgstr ""
 
-#: config/widgets.php:27
+#: config/widgets.php:21
 msgid "Content blocks"
 msgstr ""
 
-#: controllers/BlocksController.php:56
+#: controllers/BlocksController.php:52
 msgid "Successfully saved."
 msgstr ""
 
-#: controllers/BlocksController.php:62
+#: controllers/BlocksController.php:58
 msgid "Failed to save."
 msgstr ""
 
@@ -54,19 +58,20 @@ msgstr ""
 msgid "content block"
 msgstr ""
 
-#: views/blocks/admin_form.html.php:18
+#: views/blocks/admin_form.html.php:18 views/pages/admin_form.html.php:18
 msgid "published"
 msgstr ""
 
-#: views/blocks/admin_form.html.php:18
+#: views/blocks/admin_form.html.php:18 views/pages/admin_form.html.php:18
 msgid "unpublished"
 msgstr ""
 
-#: views/blocks/admin_form.html.php:31
+#: views/blocks/admin_form.html.php:31 views/pages/admin_form.html.php:27
 msgid "Access"
 msgstr ""
 
 #: views/blocks/admin_form.html.php:37 views/blocks/admin_index.html.php:48
+#: views/pages/admin_form.html.php:33 views/pages/admin_index.html.php:41
 msgid "Owner"
 msgstr ""
 
@@ -74,19 +79,21 @@ msgstr ""
 msgid "Region"
 msgstr ""
 
-#: views/blocks/admin_form.html.php:62
+#: views/blocks/admin_form.html.php:62 views/pages/admin_form.html.php:98
 msgid "delete"
 msgstr ""
 
 #: views/blocks/admin_form.html.php:69 views/blocks/admin_index.html.php:75
+#: views/pages/admin_form.html.php:105 views/pages/admin_index.html.php:73
 msgid "publish"
 msgstr ""
 
 #: views/blocks/admin_form.html.php:69 views/blocks/admin_index.html.php:75
+#: views/pages/admin_form.html.php:105 views/pages/admin_index.html.php:73
 msgid "unpublish"
 msgstr ""
 
-#: views/blocks/admin_form.html.php:71
+#: views/blocks/admin_form.html.php:71 views/pages/admin_form.html.php:107
 msgid "save"
 msgstr ""
 
@@ -94,22 +101,47 @@ msgstr ""
 msgid "content blocks"
 msgstr ""
 
-#: views/blocks/admin_index.html.php:43
+#: views/blocks/admin_index.html.php:43 views/pages/admin_index.html.php:37
 msgid "publ.?"
 msgstr ""
 
-#: views/blocks/admin_index.html.php:46
+#: views/blocks/admin_index.html.php:46 views/pages/admin_index.html.php:39
 msgid "Modified"
 msgstr ""
 
-#: views/blocks/admin_index.html.php:54
+#: views/blocks/admin_index.html.php:54 views/pages/admin_index.html.php:50
 msgid "Filter"
 msgstr ""
 
-#: views/blocks/admin_index.html.php:76
+#: views/blocks/admin_index.html.php:76 views/pages/admin_index.html.php:74
 msgid "open"
 msgstr ""
 
-#: views/blocks/admin_index.html.php:81
+#: views/blocks/admin_index.html.php:81 views/pages/admin_index.html.php:79
 msgid "No items available, yet."
+msgstr ""
+
+#: views/pages/admin_form.html.php:14
+msgid "untitled"
+msgstr ""
+
+#: views/pages/admin_form.html.php:15 views/pages/admin_index.html.php:30
+msgid "page"
+msgstr ""
+
+#: views/pages/admin_form.html.php:41
+msgid "Sites"
+msgstr ""
+
+#: views/pages/admin_form.html.php:47 views/pages/admin_index.html.php:44
+msgid "Site"
+msgstr ""
+
+#: views/pages/admin_form.html.php:59 views/pages/admin_form.html.php:67
+#: views/pages/admin_index.html.php:38
+msgid "Title"
+msgstr ""
+
+#: views/pages/admin_index.html.php:13
+msgid "pages"
 msgstr ""
