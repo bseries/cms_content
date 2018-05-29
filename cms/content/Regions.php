@@ -17,7 +17,7 @@ class Regions {
 	use \base_core\core\RegisterableEnumeration;
 
 	public static function register($name, array $object) {
-		static::$_registry[$name] = new Region($object);
+		static::$_registry[$name] = new Region($object + compact('name'));
 	}
 }
 

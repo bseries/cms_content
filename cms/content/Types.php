@@ -17,7 +17,7 @@ class Types {
 	use \base_core\core\RegisterableEnumeration;
 
 	public static function register($name, array $object) {
-		static::$_registry[$name] = new Type($object);
+		static::$_registry[$name] = new Type($object + compact('name'));
 	}
 }
 

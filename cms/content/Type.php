@@ -19,6 +19,7 @@ class Type {
 
 	public function __construct(array $config) {
 		return $this->_config = $config + [
+			'name' => null,
 			'input' => function($context, $item) {},
 			'format' => function($context, $item) {}
 		];
