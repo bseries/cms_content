@@ -20,10 +20,5 @@
         "davidpersson/textual": "1.0.*@stable",
         "php": ">=5.5.0",
         "unionofrad/lithium": "1.0.*@dev"
-    },
-    "repositories": [
-      { "type": "vcs", "url": "git@code.disko.io:base_core" },
-      { "type": "vcs", "url": "git@code.disko.io:base_media" },
-      { "type": "vcs", "url": "git@code.disko.io:cms_core" }
-    ]
+    }
 }
