@@ -1,5 +1,5 @@
 {
-    "name": "atelierdisko/cms_content",
+    "name": "bseries/cms_content",
     "description": "Generic Content functionality for Bureau.",
     "homepage": "http://atelierdisko.de",
     "type": "lithium-library",
@@ -10,17 +10,12 @@
     },
     "require": {
         "php": ">=5.5.0",
-        "atelierdisko/base_core": "1.3.*",
-        "atelierdisko/base_media": "1.3.*",
-        "atelierdisko/cms_core": "1.3.*",
+        "bseries/base_core": "1.3.*",
+        "bseries/base_media": "1.3.*",
+        "bseries/cms_core": "1.3.*",
         "atelierdisko/li3_flash_message": "1.0.*@beta",
         "unionofrad/lithium": "1.0.*@dev",
         "composer/installers": "1.*@stable",
         "davidpersson/textual": "1.0.*@stable"
-    },
-    "repositories": [
-      { "type": "vcs", "url": "git@code.atelierdisko.de:base_core" },
-      { "type": "vcs", "url": "git@code.atelierdisko.de:base_media" },
-      { "type": "vcs", "url": "git@code.atelierdisko.de:cms_core" }
-    ]
+    }
 }
