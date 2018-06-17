@@ -11,7 +11,7 @@ CREATE TABLE `content_blocks` (
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `pages` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -24,4 +24,4 @@ CREATE TABLE `pages` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `is_published` (`is_published`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
