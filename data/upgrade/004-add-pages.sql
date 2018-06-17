@@ -9,4 +9,4 @@ CREATE TABLE `pages` (
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `is_published` (`is_published`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB;
