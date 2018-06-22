@@ -1,4 +1,5 @@
-CREATE TABLE `pages` (
+-- The table may be already present, when the cms_page module was used before.
+CREATE TABLE IF NOT EXISTS `pages` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `owner_id` int(11) unsigned NOT NULL,
   `site` varchar(50) DEFAULT NULL,
