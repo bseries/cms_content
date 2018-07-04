@@ -4,15 +4,15 @@
     "type": "lithium-library",
     "license": ["BSD-3-Clause"],
     "require": {
+        "atelierdisko/li3_access": "^2",
+        "atelierdisko/li3_flash_message": "^1",
         "bseries/base_core": "1.5.x-dev",
         "bseries/base_media": "1.5.x-dev",
         "bseries/cms_core": "1.5.x-dev",
-        "atelierdisko/li3_access": "2.*@stable || 2.1.0@dev",
-        "atelierdisko/li3_flash_message": "1.*",
-        "composer/installers": "1.*@stable",
-        "davidpersson/li3_translate": "^2.1@dev",
-        "davidpersson/textual": "1.0.*@stable",
-        "php": "^5.5 || ^7.0",
+        "composer/installers": "^1",
+        "davidpersson/li3_translate": "^2.1",
+        "davidpersson/textual": "^1",
+        "php": "^7",
         "unionofrad/lithium": "^1.2"
     }
 }
