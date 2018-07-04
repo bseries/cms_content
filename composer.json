@@ -6,9 +6,9 @@
     "require": {
         "atelierdisko/li3_access": "^2",
         "atelierdisko/li3_flash_message": "^1",
-        "bseries/base_core": "1.5.x-dev",
-        "bseries/base_media": "1.5.x-dev",
-        "bseries/cms_core": "1.5.x-dev",
+        "bseries/base_core": "^1.5",
+        "bseries/base_media": "^1.5",
+        "bseries/cms_core": "^1.5",
         "composer/installers": "^1",
         "davidpersson/li3_translate": "^2.1",
         "davidpersson/textual": "^1",
