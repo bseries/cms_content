@@ -60,7 +60,8 @@ class Blocks extends \base_core\models\Base {
 				'Owner.name',
 				'Owner.number',
 				'type',
-				'region'
+				'region',
+				'site'
 			]
 		],
 		'base_core\extensions\data\behavior\Localizable' => [

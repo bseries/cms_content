@@ -27,7 +27,8 @@ class Pages extends \base_core\models\Base {
 			'fields' => [
 				'Owner.name',
 				'Owner.number',
-				'title'
+				'title',
+				'site'
 			]
 		]
 	];
