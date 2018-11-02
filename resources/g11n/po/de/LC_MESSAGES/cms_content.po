@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: cms_content 1.0\n"
 "Report-Msgid-Bugs-To: info@atelierdisko.de\n"
-"POT-Creation-Date: 2018-04-25 17:26+0200\n"
+"POT-Creation-Date: 2018-07-12 12:51+0200\n"
 "PO-Revision-Date: 2018-04-25 17:26+0200\n"
 "Last-Translator: David Persson <davidpersson@gmx.de>\n"
 "Language-Team: none\n"
@@ -76,25 +76,34 @@ msgstr "Zugriff"
 msgid "Owner"
 msgstr "Eigentümer"
 
-#: views/blocks/admin_form.html.php:48 views/blocks/admin_index.html.php:44
+#: views/blocks/admin_form.html.php:45 views/pages/admin_form.html.php:41
+msgid "Sites"
+msgstr "Sites"
+
+#: views/blocks/admin_form.html.php:51 views/blocks/admin_index.html.php:51
+#: views/pages/admin_form.html.php:47 views/pages/admin_index.html.php:44
+msgid "Site"
+msgstr "Site"
+
+#: views/blocks/admin_form.html.php:62 views/blocks/admin_index.html.php:44
 msgid "Region"
 msgstr "Bereich"
 
-#: views/blocks/admin_form.html.php:62 views/pages/admin_form.html.php:98
+#: views/blocks/admin_form.html.php:76 views/pages/admin_form.html.php:98
 msgid "delete"
 msgstr "löschen"
 
-#: views/blocks/admin_form.html.php:69 views/blocks/admin_index.html.php:75
+#: views/blocks/admin_form.html.php:83 views/blocks/admin_index.html.php:82
 #: views/pages/admin_form.html.php:105 views/pages/admin_index.html.php:73
 msgid "publish"
 msgstr "publizieren"
 
-#: views/blocks/admin_form.html.php:69 views/blocks/admin_index.html.php:75
+#: views/blocks/admin_form.html.php:83 views/blocks/admin_index.html.php:82
 #: views/pages/admin_form.html.php:105 views/pages/admin_index.html.php:73
 msgid "unpublish"
 msgstr "depublizieren"
 
-#: views/blocks/admin_form.html.php:71 views/pages/admin_form.html.php:107
+#: views/blocks/admin_form.html.php:85 views/pages/admin_form.html.php:107
 msgid "save"
 msgstr "speichern"
 
@@ -110,15 +119,15 @@ msgstr "publ.?"
 msgid "Modified"
 msgstr "Bearbeitet"
 
-#: views/blocks/admin_index.html.php:54 views/pages/admin_index.html.php:50
+#: views/blocks/admin_index.html.php:57 views/pages/admin_index.html.php:50
 msgid "Filter"
 msgstr "Filter"
 
-#: views/blocks/admin_index.html.php:76 views/pages/admin_index.html.php:74
+#: views/blocks/admin_index.html.php:83 views/pages/admin_index.html.php:74
 msgid "open"
 msgstr "öffnen"
 
-#: views/blocks/admin_index.html.php:81 views/pages/admin_index.html.php:79
+#: views/blocks/admin_index.html.php:88 views/pages/admin_index.html.php:79
 msgid "No items available, yet."
 msgstr "Es sind noch keine Einträge verfügbar."
 
@@ -129,14 +138,6 @@ msgstr "ohne Titel"
 #: views/pages/admin_form.html.php:15 views/pages/admin_index.html.php:30
 msgid "page"
 msgstr "Seite"
-
-#: views/pages/admin_form.html.php:41
-msgid "Sites"
-msgstr "Sites"
-
-#: views/pages/admin_form.html.php:47 views/pages/admin_index.html.php:44
-msgid "Site"
-msgstr "Site"
 
 #: views/pages/admin_form.html.php:59 views/pages/admin_form.html.php:67
 #: views/pages/admin_index.html.php:38
