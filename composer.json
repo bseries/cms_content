@@ -4,7 +4,7 @@
     "type": "lithium-library",
     "license": ["BSD-3-Clause"],
     "require": {
-        "atelierdisko/li3_access": "^2",
+        "atelierdisko/li3_access": "^2.2",
         "atelierdisko/li3_flash_message": "^1",
         "bseries/base_core": "^1.5",
         "bseries/base_media": "^1.5",
