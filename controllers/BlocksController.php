@@ -67,6 +67,8 @@ class BlocksController extends \base_core\controllers\BaseController {
 		$useOwner = $useOwner && Gate::checkRight('owner');
 		if ($useOwner) {
 			$users = $this->_users($item, ['field' => 'owner_id']);
+		} else {
+			$users = [];
 		}
 
 		$this->_render['template'] = 'admin_form';
@@ -92,7 +94,7 @@ class BlocksController extends \base_core\controllers\BaseController {
 				return $item->title();
 			})->to('array');
 
-		return compact('regions', 'users');
+		return compact('regions');
 	}
 }
 
